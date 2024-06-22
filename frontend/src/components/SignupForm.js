@@ -12,7 +12,7 @@ const SignupForm = () => {
       const response = await axios.post('http://localhost:5000/api/users/register', { username, email, password });
       alert(response.data.message);
     } catch (error) {
-      alert('User already exists');
+      alert('Something went wrong=');
     }
   };
 

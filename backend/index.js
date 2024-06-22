@@ -6,9 +6,8 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://sellerscore:faI71QgPIDBp8ikf@sellerscore.ayomdwm.mongodb.net/', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect('mongodb://localhost:27017/myLocalDB', {
+
 });
 
 app.use(bodyParser.json());

@@ -23,5 +23,8 @@
     "mongoose": "^8.4.1",
     "react-router-dom": "^6.23.1",
     "styled-components": "^6.1.11"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb+srv://sellerscore:faI71QgPIDBp8ikf@sellerscore.ayomdwm.mongodb.net/mydatabase'; // Replace 'mydatabase' with your actual database name
+const mongoURI = 'mongodb://localhost:27017/myLocalDB';
 
 const connectDB = async () => {
   try {
