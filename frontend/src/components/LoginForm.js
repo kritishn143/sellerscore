@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import './LoginForm.css'; // Import your CSS file for styling
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,22 +15,43 @@ const LoginForm = () => {
       alert('Login successful');
       // Store token in local storage or context for future requests
       localStorage.setItem('token', response.data.token);
+      setError('');
     } catch (error) {
-      alert('Wrong Credentials');
+      setError('Invalid credentials. Please try again.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <form className="login-form" onSubmit={handleSubmit}>
+      <h2>Sellerscore</h2>
+      {error && <p className="error-message">{error}</p>}
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          required
+        />
       </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <div className="form-group">
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter your password"
+          required
+        />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Login</button> <hr />
+    
+      <p>
+        Not registered yet? <Link to="/signup"><button type="button">Signup</button></Link>
+      </p>
     </form>
   );
 };
