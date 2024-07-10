@@ -12,6 +12,7 @@ SellerScore is a premier business rating platform designed to enhance transparen
 ## Installation
 
 Make sure you Download and install "https://www.mongodb.com/try/download/community"
+
 Database Name: test  
 Collection Name: users
 
