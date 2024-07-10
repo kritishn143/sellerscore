@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, default: 'user' }, // Add this line
+  role: { type: String, default: 'user' } // Default role is 'user'
 });
 
 UserSchema.pre('save', async function(next) {
@@ -18,4 +18,24 @@ UserSchema.pre('save', async function(next) {
 });
 
 const User = mongoose.model('User', UserSchema);
+
+// Now, to create an admin user, you can use the User model
+// For example, to create an admin user with username 'admin' and password 'adminpassword':
+const adminUser = new User({
+  username: 'admin',
+  email: 'admin@mail.com',
+  password: 'admin',
+  role: 'admin'  // Assign 'admin' as the role
+});
+
+// Save the admin user to the database
+adminUser.save()
+  .then(() => {
+    console.log('Admin user created successfully');
+  })
+  .catch(err => {
+    console.error('Error creating admin user:', err);
+  });
+
+
 module.exports = User;

@@ -6,7 +6,7 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://sellerscore:faI71QgPIDBp8ikf@sellerscore.ayomdwm.mongodb.net/', {
+mongoose.connect('mongodb://localhost:27017/', {
 
 });
 
