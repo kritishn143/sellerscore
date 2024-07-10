@@ -119,6 +119,9 @@ Every effort is made to keep the document up and running smoothly. However, Sell
 
 ## Contact
 
-For any inquiries or concerns regarding this document, please contact us at workforkritish@gmail.com .
+For any inquiries or concerns regarding this document, please contact us at: 
+
+workforkritish@gmail.com 
+connectwithakreeti@gmail.com
 
 
