@@ -15,58 +15,58 @@ Make sure you Download and install https://www.mongodb.com/try/download/communit
 Database Name test  
 Collection Name users
 
-# Clone the project repository to your local machine
+Clone the project repository to your local machine
 git clone <repository-url>
 
-# Navigate into the project directory
+Navigate into the project directory
 cd <project-directory>
 
-# This project is divided into two main parts: the backend and the frontend.
-# You will need to install dependencies for both.
+This project is divided into two main parts: the backend and the frontend.
+You will need to install dependencies for both.
 
-# Backend Installation
-# Navigate to the backend directory
-```bash cd backend
+Backend Installation
+Navigate to the backend directory
+```bash 
+cd backend
 ```
 
-# Install the backend dependencies
+ Install the backend dependencies
 ```bash 
 npm install
 ```
 
-# Return to the project root directory
+Return to the project root directory
 ```bash
 cd ..
 ```
 
-# Frontend Installation
-# Navigate to the frontend directory
+Frontend Installation
+Navigate to the frontend directory
 ```bash
 cd frontend
 ```
 
-# Install the frontend dependencies
+Install the frontend dependencies
 ```bash
 npm install
 ```
 
-# Return to the project root directory
+Return to the project root directory
 ```bash
 cd ..
 ```
 
-# Running the Project
-# After installing all dependencies, you can run both the frontend and backend simultaneously
-# using the dev script defined in the project's root package.json file.
+Running the Project
+After installing all dependencies, you can run both the frontend and backend simultaneously
+using the dev script defined in the project's root package.json file.
 
-# From the project root directory, run:
+From the project root directory, run:
 ```bash
 npm run dev
 ```
 
-# This command uses concurrently to run both the frontend and backend in parallel.
-# The frontend will be available at http://localhost:3000,
-# and the backend will start with nodemon for live reloading during development.
+This command uses concurrently to run both the frontend and backend in parallel.
+The frontend will be available at http://localhost:3000, and the backend will start with nodemon for live reloading during development.
 
 
 ## Usage
