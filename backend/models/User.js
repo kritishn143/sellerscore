@@ -21,7 +21,7 @@ const User = mongoose.model('User', UserSchema);
 
 // Now, to create an admin user, you can use the User model
 // For example, to create an admin user with username 'admin' and password 'adminpassword':
-const adminUser = new User({
+/* const adminUser = new User({
   username: 'admin',
   email: 'admin@mail.com',
   password: 'admin',
@@ -36,6 +36,7 @@ adminUser.save()
   .catch(err => {
     console.error('Error creating admin user:', err);
   });
+  */
 
 
 module.exports = User;
