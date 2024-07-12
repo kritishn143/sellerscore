@@ -4,6 +4,7 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import Dashboard from './pages/Dashboard';
+import BusinessRequestForm from './components/BusinessRequestForm';
 
 const App = () => {
   return (
@@ -16,8 +17,9 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
 
           {/* Admin routes */}
+          
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          {/* Add other admin routes as needed */}
+          <Route path="/BusinessRequestForm" element={<BusinessRequestForm />} />
 
           {/* Default route */}
           <Route path="/" element={<Dashboard />} />

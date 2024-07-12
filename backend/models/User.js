@@ -5,7 +5,13 @@ const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, default: 'user' } // Default role is 'user'
+  role: { type: String, default: 'user' }, // Default role is 'user'
+  businessName: { type: String, default: '' },
+  location: { type: String, default: '' },
+  categories: [{ type: String }],
+  websiteOrSocialLinks: [{ type: String }],
+  requestStatus: { type: String, default: 'pending' }, // 'pending', 'approved', 'declined'
+  feedback: { type: String, default: '' }
 });
 
 UserSchema.pre('save', async function(next) {
@@ -37,6 +43,5 @@ adminUser.save()
     console.error('Error creating admin user:', err);
   });
   */
-
 
 module.exports = User;

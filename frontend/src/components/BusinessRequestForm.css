@@ -1,0 +1,28 @@
+.business-request-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .business-request-form input,
+  .business-request-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .business-request-form button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    cursor: pointer;
+  }
+  
+  .business-request-form button:hover {
+    background-color: #45a049;
+  }
