@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import './SignupForm.css'; // Import your SignupForm CSS file for styling
+import { Link, useNavigate } from 'react-router-dom';
+import './SignupForm.css'; 
 
 const SignupForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +16,13 @@ const SignupForm = () => {
       const response = await axios.post('http://localhost:5000/api/users/register', { username, email, password });
       alert(response.data.message);
       setError('');
+      navigate('/login'); // Redirect to login after successful signup
     } catch (error) {
-      setError('Something went wrong. Please try again.');
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
     }
   };
 
@@ -59,7 +65,7 @@ const SignupForm = () => {
       </div>
       <button type="submit">Signup</button>
       <p>
-       Already Have an account? <Link to="/login"><button type="button">Login</button></Link>
+        Already have an account? <Link to="/login">Login</Link>
       </p>
     </form>
   );

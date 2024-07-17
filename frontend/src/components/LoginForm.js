@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import './LoginForm.css'; // Import your CSS file for styling
+import { Link, useNavigate } from 'react-router-dom';
+import './LoginForm.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
       alert('Login successful');
-      // Store token in local storage or context for future requests
       localStorage.setItem('token', response.data.token);
       setError('');
+      navigate('/dashboard'); // Redirect to dashboard after successful login
     } catch (error) {
-      setError('Invalid credentials. Please try again.');
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Invalid credentials. Please try again.');
+      }
     }
   };
 
@@ -50,7 +55,7 @@ const LoginForm = () => {
       <button type="submit">Login</button> <hr />
     
       <p>
-        Not registered yet? <Link to="/signup"><button type="button">Signup</button></Link>
+        Not registered yet? <Link to="/signup">Signup</Link>
       </p>
     </form>
   );
