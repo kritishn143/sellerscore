@@ -6,13 +6,9 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
-// Update the connection string with your database name
 mongoose.connect('mongodb://localhost:27017/test', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+
+});
 
 app.use(bodyParser.json());
 app.use(cors());
