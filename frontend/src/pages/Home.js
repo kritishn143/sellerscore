@@ -1,13 +1,14 @@
-// frontend/src/pages/Home.js
+// src/pages/Home.js
 import React from 'react';
+import BusinessRequestForm from '../components/BusinessRequestForm';
 
-function Home() {
-    return (
-        <div>
-            <h1>Welcome to SellerScore</h1>
-            {/* Additional content */}
-        </div>
-    );
-}
+const Home = () => {
+  return (
+    <div>
+      <h1>Submit a Business Request</h1>
+      <BusinessRequestForm />
+    </div>
+  );
+};
 
 export default Home;
