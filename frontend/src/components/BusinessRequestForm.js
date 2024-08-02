@@ -16,7 +16,7 @@ const BusinessRequestForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/business-request', formData);
+      await axios.post('http://localhost:5000/api/users/business-request', formData);
       alert('Business request submitted successfully!');
     } catch (error) {
       console.error('There was an error submitting the business request!', error);
