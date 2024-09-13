@@ -61,7 +61,6 @@ const AdminDashboard = () => {
           <tr>
             <th>Business Name</th>
             <th>Address</th>
-            <th>Location</th>
             <th>Website</th>
             <th>Category</th>
             <th>Status</th>
@@ -73,7 +72,6 @@ const AdminDashboard = () => {
             <tr key={request._id}>
               <td>{request.businessName}</td>
               <td>{request.address}</td>
-              <td>{request.location}</td>
               <td>{request.website}</td>
               <td>{request.category}</td>
               <td>{request.status}</td>

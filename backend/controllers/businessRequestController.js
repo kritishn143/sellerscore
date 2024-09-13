@@ -3,7 +3,7 @@ const BusinessRequest = require('../models/businessRequest');
 const submitBusinessRequest = async (req, res) => {
   try {
     const userId = req.userId; // Get userId from the request object
-    const { businessName, address, location, website, category } = req.body;
+    const { businessName, address, website, category } = req.body;
 
     const existingRequest = await BusinessRequest.findOne({ userId });
 
@@ -15,7 +15,6 @@ const submitBusinessRequest = async (req, res) => {
       userId, // Set userId
       businessName,
       address,
-      location,
       website,
       category,
       status: 'pending', // Set default status to 'pending'

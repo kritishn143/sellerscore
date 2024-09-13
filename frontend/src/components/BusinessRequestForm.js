@@ -5,7 +5,6 @@ const BusinessRequestForm = () => {
   const [formData, setFormData] = useState({
     businessName: '',
     address: '',
-    location: '',
     website: '',
     category: '', // Add category to form data
   });
@@ -42,10 +41,7 @@ const BusinessRequestForm = () => {
         <label>Address:</label>
         <input type="text" name="address" value={formData.address} onChange={handleChange} required />
       </div>
-      <div>
-        <label>Location:</label>
-        <input type="text" name="location" value={formData.location} onChange={handleChange} required />
-      </div>
+
       <div>
         <label>Website or Social Media:</label>
         <input type="text" name="website" value={formData.website} onChange={handleChange} required />
