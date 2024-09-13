@@ -9,6 +9,7 @@ const businessRequestSchema = new mongoose.Schema({
   website: { type: String, required: true },
   category: { type: String, required: true },
   status: { type: String, default: 'pending' },
+  feedback: { type: String },
 }, {
   timestamps: true,
 });
