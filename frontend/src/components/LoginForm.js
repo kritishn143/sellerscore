@@ -1,3 +1,4 @@
+// frontend/src/components/LoginForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,14 +10,17 @@ const LoginForm = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
-      alert('Login successful');
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('role', response.data.role); // Store the user's role
       setError('');
-      navigate('/dashboard'); // Redirect to dashboard after successful login
+      if (response.data.role === 'admin') {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -24,6 +28,11 @@ const LoginForm = () => {
         setError('Invalid credentials. Please try again.');
       }
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin();
   };
 
   return (
@@ -53,7 +62,6 @@ const LoginForm = () => {
         />
       </div>
       <button type="submit">Login</button> <hr />
-    
       <p>
         Not registered yet? <Link to="/signup">Signup</Link>
       </p>

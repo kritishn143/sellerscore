@@ -17,6 +17,7 @@ const register = async (req, res) => {
   }
 };
 
+// backend/controllers/userController.js
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -29,7 +30,7 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
     const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
-    res.json({ token });
+    res.json({ token, role: user.role }); // Return the user role
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
