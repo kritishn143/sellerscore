@@ -63,8 +63,8 @@ const AdminDashboard = () => {
             <th>Address</th>
             <th>Website</th>
             <th>Category</th>
-            <th>Status</th>
             <th>Action</th>
+            <th>Feedbacks</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +74,6 @@ const AdminDashboard = () => {
               <td>{request.address}</td>
               <td>{request.website}</td>
               <td>{request.category}</td>
-              <td>{request.status}</td>
               <td>
                 {request.status === 'pending' && (
                   <>
@@ -85,6 +84,9 @@ const AdminDashboard = () => {
                 {request.status === 'declined' && <span>Declined</span>}
                 {request.status === 'approved' && <span>Approved</span>}
               </td>
+              <td>{request.status === 'declined' ? request.feedback : ''}</td> {/* Conditionally render feedback */}
+
+              
             </tr>
           ))}
         </tbody>

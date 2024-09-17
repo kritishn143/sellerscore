@@ -30,10 +30,12 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
     const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
-    res.json({ token, role: user.role }); // Return the user role
+    res.json({ token, role: user.role });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+module.exports = { register, login };
 
 module.exports = { register, login };

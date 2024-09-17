@@ -54,16 +54,20 @@ const updateBusinessRequestStatus = async (req, res) => {
     res.status(500).send({ message: 'Failed to update business request status' });
   }
 };
+
+
 const getUserBusinessRequests = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const requests = await BusinessRequest.find({ user: userId });
-    res.status(200).json(requests);
+    const requests = await BusinessRequest.find({ userId: req.userId });
+    res.json(requests);
   } catch (error) {
     console.error('Error fetching user business requests:', error);
-    res.status(500).json({ message: 'Failed to fetch business requests' });
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
+module.exports = { getUserBusinessRequests };
+
 
 const approveBusinessRequest = async (req, res) => {
   try {
@@ -95,4 +99,4 @@ const declineBusinessRequest = async (req, res) => {
   }
 };
 
-module.exports = { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, getUserBusinessRequests };
+module.exports = { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, getUserBusinessRequests, updateBusinessRequestStatus };
