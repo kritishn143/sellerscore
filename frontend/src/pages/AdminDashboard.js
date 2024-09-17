@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const AdminDashboard = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [feedback, setFeedback] = useState('');
+  const [declineRequestId, setDeclineRequestId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,20 +29,30 @@ const AdminDashboard = () => {
   }, []);
 
   const handleAction = async (requestId, action) => {
+    if (action === 'decline' && !feedback) {
+      alert('Please provide feedback for declining this request.');
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
-      const feedback = action === 'decline' ? prompt('Please provide feedback for declining this request:') : '';
-
       await axios.put(`http://localhost:5000/api/users/business-request/${requestId}/${action}`, { feedback }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       alert(`Business request ${action}d successfully!`);
       setRequests(requests.filter(request => request._id !== requestId)); // Update state after approval/decline
+      setFeedback('');
+      setDeclineRequestId(null);
     } catch (error) {
       console.error(`Error ${action}ing request:`, error);
       alert(`Failed to ${action} request.`);
     }
+  };
+
+  const handleCancel = () => {
+    setFeedback('');
+    setDeclineRequestId(null);
   };
 
   const handleLogout = () => {
@@ -78,15 +90,27 @@ const AdminDashboard = () => {
                 {request.status === 'pending' && (
                   <>
                     <button onClick={() => handleAction(request._id, 'approve')}>Approve</button>
-                    <button onClick={() => handleAction(request._id, 'decline')}>Decline</button>
+                    <button onClick={() => setDeclineRequestId(request._id)}>Decline</button>
+                    {declineRequestId === request._id && (
+                      <div>
+                        <label>
+                          Please provide feedback for declining this request:
+                          <input 
+                            type="text" 
+                            value={feedback} 
+                            onChange={(e) => setFeedback(e.target.value)} 
+                          />
+                        </label>
+                        <button onClick={() => handleAction(request._id, 'decline')}>Submit</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                      </div>
+                    )}
                   </>
                 )}
                 {request.status === 'declined' && <span>Declined</span>}
                 {request.status === 'approved' && <span>Approved</span>}
               </td>
               <td>{request.status === 'declined' ? request.feedback : ''}</td> {/* Conditionally render feedback */}
-
-              
             </tr>
           ))}
         </tbody>
