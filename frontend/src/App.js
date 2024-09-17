@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import BusinessRequestForm from './components/BusinessRequestForm';
 import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
@@ -17,9 +18,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/business-request" element={<BusinessRequestForm />} />
+          <Route path="/business-request" element={<ProtectedRoute component={BusinessRequestForm} />} />
           <Route path="/category/:category" element={<CategoryPage />} />
         </Routes>
       </div>
