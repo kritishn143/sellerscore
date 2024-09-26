@@ -10,6 +10,7 @@ const businessRequestSchema = new mongoose.Schema({
   category: { type: String, required: true },
   status: { type: String, default: 'pending' },
   feedback: { type: String },
+  imageUrl: { type: String }, 
 }, {
   timestamps: true,
 });

@@ -41,17 +41,28 @@ const Dashboard = () => {
         <thead>
           <tr>
             <th>Business Name</th>
+            <th>Image</th> {/* Added Image column in the header */}
             <th>Address</th>
             <th>Website</th>
             <th>Category</th>
             <th>Status</th>
-            <th>Feedback</th> {/* Add Feedback column */}
+            <th>Feedback</th>
           </tr>
         </thead>
         <tbody>
           {requests.map(request => (
             <tr key={request._id}>
               <td>{request.businessName}</td>
+              <td>
+                {/* Display the business image */}
+                {request.imageUrl && (
+                  <img 
+                    src={`http://localhost:5000${request.imageUrl}`} 
+                    alt={request.businessName} 
+                    style={{ width: '100px', height: 'auto' }} 
+                  />
+                )}
+              </td>
               <td>{request.address}</td>
               <td>{request.website}</td>
               <td>{request.category}</td>

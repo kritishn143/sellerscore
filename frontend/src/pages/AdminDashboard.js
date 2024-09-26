@@ -75,6 +75,7 @@ const AdminDashboard = () => {
             <th>Address</th>
             <th>Website</th>
             <th>Category</th>
+            <th>Image</th> {/* Add Image Column */}
             <th>Action</th>
             <th>Feedbacks</th>
           </tr>
@@ -86,6 +87,15 @@ const AdminDashboard = () => {
               <td>{request.address}</td>
               <td>{request.website}</td>
               <td>{request.category}</td>
+              <td>
+                {request.imageUrl && (
+                  <img 
+                    src={`http://localhost:5000${request.imageUrl}`} 
+                    alt={request.businessName} 
+                    style={{ width: '100px', height: 'auto' }} 
+                  />
+                )}
+              </td> {/* Display Image */}
               <td>
                 {request.status === 'pending' && (
                   <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const BusinessRequestForm = () => {
@@ -6,20 +6,57 @@ const BusinessRequestForm = () => {
     businessName: '',
     address: '',
     website: '',
-    category: '', // Add category to form data
+    category: '',
+    image: null,
+    imageUrl: '',
   });
 
+  useEffect(() => {
+    // Fetch the existing business request data if needed
+    const fetchBusinessRequest = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/api/users/business-request', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setFormData(response.data);
+      } catch (error) {
+        console.error('Error fetching business request:', error);
+      }
+    };
+
+    fetchBusinessRequest();
+  }, []);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === 'image') {
+      setFormData({ ...formData, image: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDataToSend = new FormData();
+    formDataToSend.append('businessName', formData.businessName);
+    formDataToSend.append('address', formData.address);
+    formDataToSend.append('website', formData.website);
+    formDataToSend.append('category', formData.category);
+    if (formData.image) {
+      formDataToSend.append('image', formData.image);
+    }
+
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/users/business-request', formData, {
-        headers: { Authorization: `Bearer ${token}` }
+      const response = await axios.post('http://localhost:5000/api/users/business-request', formDataToSend, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
       });
+      setFormData(response.data); // Update form data with the response data
       alert('Business request submitted successfully!');
     } catch (error) {
       console.error('There was an error submitting the business request!', error);
@@ -41,7 +78,6 @@ const BusinessRequestForm = () => {
         <label>Address:</label>
         <input type="text" name="address" value={formData.address} onChange={handleChange} required />
       </div>
-
       <div>
         <label>Website or Social Media:</label>
         <input type="text" name="website" value={formData.website} onChange={handleChange} required />
@@ -56,14 +92,19 @@ const BusinessRequestForm = () => {
           <option value="Furniture Store">Furniture Store</option>
           <option value="Jewelry Store">Jewelry Store</option>
           <option value="Clothing Store">Clothing Store</option>
-          <option value="Electronics & Technology">Electronics & Technology</option>
-          <option value="Fitness and Nutrition Service">Fitness and Nutrition Service</option>
-          <option value="Pet Store">Pet Store</option>
-          <option value="Energy Supplier">Energy Supplier</option>
-          <option value="Real Estate Agents">Real Estate Agents</option>
+          <option value="Electronics and Technology">Electronics & Technology</option>
           <option value="Insurance Agency">Insurance Agency</option>
         </select>
       </div>
+      <div>
+        <label>Business Image:</label>
+        <input type="file" name="image" onChange={handleChange} />
+      </div>
+      {formData.imageUrl && (
+        <div>
+          <img src={formData.imageUrl} alt="Business" style={{ width: '200px', height: 'auto' }} />
+        </div>
+      )}
       <button type="submit">Submit</button>
     </form>
   );

@@ -11,6 +11,7 @@ import CategoryPage from './pages/CategoryPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 
+
 const App = () => {
   return (
     <Router>

@@ -30,6 +30,13 @@ const CategoryPage = () => {
             <p>{business.address}</p>
             <p>{business.website}</p>
             <p>{business.category}</p>
+            {business.imageUrl && (
+              <img 
+                src={`http://localhost:5000${business.imageUrl}`} 
+                alt={business.businessName} 
+                style={{ width: '100px', height: 'auto' }} 
+              />
+            )}
           </div>
         ))}
       </div>
