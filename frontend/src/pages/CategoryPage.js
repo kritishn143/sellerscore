@@ -1,6 +1,6 @@
 // frontend/src/pages/CategoryPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const CategoryPage = () => {
@@ -26,7 +26,9 @@ const CategoryPage = () => {
       <div>
         {businesses.map(business => (
           <div key={business._id}>
-            <h2>{business.businessName}</h2>
+            <h2>
+              <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
+            </h2>
             <p>{business.address}</p>
             <p>{business.website}</p>
             <p>{business.category}</p>

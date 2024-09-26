@@ -1,4 +1,6 @@
+// frontend/src/components/BusinessList.js
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const BusinessList = () => {
@@ -33,14 +35,16 @@ const BusinessList = () => {
       <div>
         {filteredBusinesses.map(business => (
           <div key={business._id} style={{ marginBottom: '20px' }}>
-         <h2>{business.businessName}</h2>  {/* Display the image if it exists */}
-          {business.imageUrl && (
-            <img 
-              src={`http://localhost:5000${business.imageUrl}`}  // Make sure this is the correct path
-              alt={business.businessName} 
-              style={{ width: '100px', height: 'auto' }} 
-            />
-          )}
+            <h2>
+              <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
+            </h2>
+            {business.imageUrl && (
+              <img 
+                src={`http://localhost:5000${business.imageUrl}`} 
+                alt={business.businessName} 
+                style={{ width: '100px', height: 'auto' }} 
+              />
+            )}
             <p>{business.address}</p>
             <p>{business.website}</p>
             <p>{business.category}</p>

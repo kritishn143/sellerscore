@@ -1,4 +1,5 @@
 // backend/routes/userRoutes.js
+
 const express = require('express');
 const { register, login } = require('../controllers/userController');
 const { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, getUserBusinessRequests } = require('../controllers/businessRequestController');
@@ -26,7 +27,6 @@ router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => 
 });
 
 // Endpoint to fetch approved businesses
-
 router.get('/approved-businesses', async (req, res) => {
   const { category } = req.query;
   try {
@@ -46,6 +46,19 @@ router.get('/categories', async (req, res) => {
   try {
     const categories = await BusinessRequest.distinct('category');
     res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Endpoint to fetch business by name
+router.get('/business/name/:name', async (req, res) => {
+  try {
+    const business = await BusinessRequest.findOne({ businessName: req.params.name });
+    if (!business) {
+      return res.status(404).json({ message: 'Business not found' });
+    }
+    res.json(business);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
