@@ -3,9 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BusinessList from '../components/BusinessList';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -18,10 +21,37 @@ const Home = () => {
     };
 
     fetchCategories();
+
+    // Simulate checking login status (replace with actual logic)
+    const token = localStorage.getItem('token'); // Example for checking login status
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, []);
+
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
+  const handleLogin = () => {
+    navigate('/login'); // Navigate to login page
+  };
+
+  const handleDashboard = () => {
+    navigate('/dashboard'); // Navigate to dashboard page
+  };
 
   return (
     <div>
+      <button onClick={handleHome}>Home</button> {/* Home Button */}
+      
+      {/* Conditional rendering of login or dashboard button */}
+      {isLoggedIn ? (
+        <button onClick={handleDashboard}>Dashboard</button>
+      ) : (
+        <button onClick={handleLogin}>Login</button>
+      )}
+
       <h1>Top categories</h1>
       <ul>
         {categories.map(category => (
