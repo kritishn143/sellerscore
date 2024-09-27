@@ -128,14 +128,18 @@ const declineBusinessRequest = async (req, res) => {
 };
 
 
-
-
-
+// Submit a review for a business
 const submitReview = async (req, res) => {
   const { businessId, rating, comment } = req.body;
   const userId = req.userId;
 
   try {
+    // Check if the user has already submitted a review for this business
+    const existingReview = await Review.findOne({ userId, businessId });
+    if (existingReview) {
+      return res.status(400).json({ message: 'You have already submitted a review for this business' });
+    }
+
     const review = new Review({ userId, businessId, rating, comment });
     await review.save();
     res.status(201).json({ message: 'Review submitted successfully' });
