@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [businesses, setBusinesses] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchBusinesses = async () => {
@@ -20,8 +24,20 @@ const CategoryPage = () => {
     fetchBusinesses();
   }, [category]);
 
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
+  const handleDashboard = () => {
+    navigate('/dashboard');
+  };
+
+
   return (
     <div>
+              <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
+              <button onClick={handleDashboard}>Dashboard</button>
+
       <h1>Top Businesses in {category}</h1>
       <div>
         {businesses.map(business => (

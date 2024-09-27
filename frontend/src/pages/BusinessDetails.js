@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BusinessDetails = () => {
   const { name } = useParams();
@@ -8,6 +9,7 @@ const BusinessDetails = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   const fetchBusiness = useCallback(async () => {
     try {
@@ -35,6 +37,15 @@ const BusinessDetails = () => {
   useEffect(() => {
     fetchReviews();
   }, [fetchReviews]);
+
+
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
+  const handleDashboard = () => {
+    navigate('/dashboard'); 
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +76,10 @@ const BusinessDetails = () => {
   }
 
   return (
-    <div>
+    <div>    
+        <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
+                        <button onClick={handleDashboard}>Dashboard</button>
+
       <h1>{business.businessName}</h1>
       {business.imageUrl && (
         <img 

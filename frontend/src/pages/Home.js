@@ -34,16 +34,16 @@ const Home = () => {
   };
 
   const handleLogin = () => {
-    navigate('/login'); // Navigate to login page
+    navigate('/login'); 
   };
 
   const handleDashboard = () => {
-    navigate('/dashboard'); // Navigate to dashboard page
+    navigate('/dashboard'); 
   };
 
   return (
     <div>
-      <button onClick={handleHome}>Home</button> {/* Home Button */}
+      <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
       
       {/* Conditional rendering of login or dashboard button */}
       {isLoggedIn ? (

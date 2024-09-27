@@ -38,6 +38,11 @@ const BusinessRequestForm = () => {
     }
   };
 
+
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -45,6 +50,9 @@ const BusinessRequestForm = () => {
     formDataToSend.append('address', formData.address);
     formDataToSend.append('website', formData.website);
     formDataToSend.append('category', formData.category);
+
+
+
     if (formData.image) {
       formDataToSend.append('image', formData.image);
     }
@@ -75,6 +83,10 @@ const BusinessRequestForm = () => {
 
   return (
     <div>
+            <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
+
+            <button onClick={handleDashboardNavigation}>Dashboard</button>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Business Name:</label>
@@ -113,7 +125,6 @@ const BusinessRequestForm = () => {
         )}
         <button type="submit">Submit</button>
       </form>
-      <button onClick={handleDashboardNavigation}>Go to Dashboard</button>
     </div>
   );
 };
