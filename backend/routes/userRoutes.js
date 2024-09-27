@@ -6,6 +6,7 @@ const { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, g
 const adminOnly = require('../middleware/role');
 const auth = require('../middleware/auth');
 const BusinessRequest = require('../models/businessRequest');
+const { submitReview, getReviews } = require('../controllers/businessRequestController');
 
 const router = express.Router();
 
@@ -15,7 +16,8 @@ router.post('/business-request', auth, submitBusinessRequest);
 router.put('/business-request/:id/approve', auth, adminOnly, approveBusinessRequest);
 router.put('/business-request/:id/decline', auth, adminOnly, declineBusinessRequest);
 router.get('/business-requests', auth, getUserBusinessRequests);
-
+router.post('/review', auth, submitReview);
+router.get('/reviews', getReviews);
 // Admin route to get all business requests
 router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => {
   try {

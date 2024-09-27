@@ -1,6 +1,7 @@
 const BusinessRequest = require('../models/businessRequest');
 const multer = require('multer');
 const path = require('path');
+const Review = require('../models/review');
 
 // Set up multer storage for image uploads
 const storage = multer.diskStorage({
@@ -126,6 +127,38 @@ const declineBusinessRequest = async (req, res) => {
   }
 };
 
+
+
+
+
+const submitReview = async (req, res) => {
+  const { businessId, rating, comment } = req.body;
+  const userId = req.userId;
+
+  try {
+    const review = new Review({ userId, businessId, rating, comment });
+    await review.save();
+    res.status(201).json({ message: 'Review submitted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+// Fetch reviews for a business
+const getReviews = async (req, res) => {
+  const { businessId } = req.query;
+
+  try {
+    const reviews = await Review.find({ businessId }).populate('userId', 'username');
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { submitReview, getReviews };
+
 // Export all handlers
 module.exports = {
   submitBusinessRequest,
@@ -133,4 +166,6 @@ module.exports = {
   declineBusinessRequest,
   getUserBusinessRequests,
   updateBusinessRequestStatus,
+  submitReview,
+  getReviews,
 };
