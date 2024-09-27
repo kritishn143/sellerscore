@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BusinessRequestForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     businessName: '',
     address: '',
@@ -12,7 +14,6 @@ const BusinessRequestForm = () => {
   });
 
   useEffect(() => {
-    // Fetch the existing business request data if needed
     const fetchBusinessRequest = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -68,45 +69,52 @@ const BusinessRequestForm = () => {
     }
   };
 
+  const handleDashboardNavigation = () => {
+    navigate('/dashboard');
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Business Name:</label>
-        <input type="text" name="businessName" value={formData.businessName} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Address:</label>
-        <input type="text" name="address" value={formData.address} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Website or Social Media:</label>
-        <input type="text" name="website" value={formData.website} onChange={handleChange} required />
-      </div>
-      <div>
-        <label>Category:</label>
-        <select name="category" value={formData.category} onChange={handleChange} required>
-          <option value="">Select a category</option>
-          <option value="Bank">Bank</option>
-          <option value="Travel Insurance Company">Travel Insurance Company</option>
-          <option value="Car Dealer">Car Dealer</option>
-          <option value="Furniture Store">Furniture Store</option>
-          <option value="Jewelry Store">Jewelry Store</option>
-          <option value="Clothing Store">Clothing Store</option>
-          <option value="Electronics and Technology">Electronics & Technology</option>
-          <option value="Insurance Agency">Insurance Agency</option>
-        </select>
-      </div>
-      <div>
-        <label>Business Image:</label>
-        <input type="file" name="image" onChange={handleChange} />
-      </div>
-      {formData.imageUrl && (
+    <div>
+      <form onSubmit={handleSubmit}>
         <div>
-          <img src={formData.imageUrl} alt="Business" style={{ width: '200px', height: 'auto' }} />
+          <label>Business Name:</label>
+          <input type="text" name="businessName" value={formData.businessName} onChange={handleChange} required />
         </div>
-      )}
-      <button type="submit">Submit</button>
-    </form>
+        <div>
+          <label>Address:</label>
+          <input type="text" name="address" value={formData.address} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Website or Social Media:</label>
+          <input type="text" name="website" value={formData.website} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Category:</label>
+          <select name="category" value={formData.category} onChange={handleChange} required>
+            <option value="">Select a category</option>
+            <option value="Bank">Bank</option>
+            <option value="Travel Insurance Company">Travel Insurance Company</option>
+            <option value="Car Dealer">Car Dealer</option>
+            <option value="Furniture Store">Furniture Store</option>
+            <option value="Jewelry Store">Jewelry Store</option>
+            <option value="Clothing Store">Clothing Store</option>
+            <option value="Electronics and Technology">Electronics & Technology</option>
+            <option value="Insurance Agency">Insurance Agency</option>
+          </select>
+        </div>
+        <div>
+          <label>Business Image:</label>
+          <input type="file" name="image" onChange={handleChange} />
+        </div>
+        {formData.imageUrl && (
+          <div>
+            <img src={formData.imageUrl} alt="Business" style={{ width: '200px', height: 'auto' }} />
+          </div>
+        )}
+        <button type="submit">Submit</button>
+      </form>
+      <button onClick={handleDashboardNavigation}>Go to Dashboard</button>
+    </div>
   );
 };
 

@@ -60,13 +60,24 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
+  const handleDashboardNavigation = () => {
+    navigate('/dashboard');
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
+      <button onClick={handleHome}>Home</button> {/* Home Button */}
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleDashboardNavigation}>Dashboard</button>
+
       <h1>Admin Dashboard</h1>
       <table>
         <thead>
@@ -75,7 +86,7 @@ const AdminDashboard = () => {
             <th>Address</th>
             <th>Website</th>
             <th>Category</th>
-            <th>Image</th> {/* Add Image Column */}
+            <th>Image</th>
             <th>Action</th>
             <th>Feedbacks</th>
           </tr>
@@ -95,7 +106,7 @@ const AdminDashboard = () => {
                     style={{ width: '100px', height: 'auto' }} 
                   />
                 )}
-              </td> {/* Display Image */}
+              </td>
               <td>
                 {request.status === 'pending' && (
                   <>
@@ -120,7 +131,7 @@ const AdminDashboard = () => {
                 {request.status === 'declined' && <span>Declined</span>}
                 {request.status === 'approved' && <span>Approved</span>}
               </td>
-              <td>{request.status === 'declined' ? request.feedback : ''}</td> {/* Conditionally render feedback */}
+              <td>{request.status === 'declined' ? request.feedback : ''}</td>
             </tr>
           ))}
         </tbody>

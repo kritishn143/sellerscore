@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
+  const role = localStorage.getItem('role');
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -31,17 +32,37 @@ const Dashboard = () => {
     navigate('/login');
   };
 
+  const handleBusinessRequest = () => {
+    navigate('/business-request');
+  };
+
+  const handleAdminDashboard = () => {
+    navigate('/admin-dashboard');
+  };
+
+  const handleHome = () => {
+    navigate('/'); 
+  };
+
   return (
     <div>
+            <button onClick={handleHome}>Home</button> {/* Home Button */}
+
       {isLoggedIn() && (
+        
         <button onClick={handleLogout}>Logout</button>
       )}
-      <h1>User Dashboard</h1>
+      <button onClick={handleBusinessRequest}>Business Request</button>
+      {role === 'admin' && (
+        <button onClick={handleAdminDashboard}>Admin Dashboard</button>
+        
+      )}      <h1>User Dashboard</h1>
+
       <table>
         <thead>
           <tr>
             <th>Business Name</th>
-            <th>Image</th> {/* Added Image column in the header */}
+            <th>Image</th>
             <th>Address</th>
             <th>Website</th>
             <th>Category</th>
@@ -54,7 +75,6 @@ const Dashboard = () => {
             <tr key={request._id}>
               <td>{request.businessName}</td>
               <td>
-                {/* Display the business image */}
                 {request.imageUrl && (
                   <img 
                     src={`http://localhost:5000${request.imageUrl}`} 
@@ -67,7 +87,7 @@ const Dashboard = () => {
               <td>{request.website}</td>
               <td>{request.category}</td>
               <td>{request.status}</td>
-              <td>{request.status === 'declined' ? request.feedback : ''}</td> {/* Conditionally render feedback */}
+              <td>{request.status === 'declined' ? request.feedback : ''}</td>
             </tr>
           ))}
         </tbody>
