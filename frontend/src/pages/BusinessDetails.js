@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import './BusinessDetails.css';
 
 const BusinessDetails = () => {
   const { name } = useParams();
@@ -39,21 +40,19 @@ const BusinessDetails = () => {
     fetchReviews();
   }, [fetchReviews]);
 
-
   const handleHome = () => {
-    navigate('/'); 
+    navigate('/');
   };
 
   const handleDashboard = () => {
-    navigate('/dashboard'); 
+    navigate('/dashboard');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitting review:', { businessId: business._id, rating, comment });
     try {
-      const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
-      const response = await axios.post('http://localhost:5000/api/users/review', {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/users/review', {
         businessId: business._id,
         rating,
         comment,
@@ -62,14 +61,28 @@ const BusinessDetails = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('Review submitted successfully:', response.data);
       setRating(0);
       setComment('');
-      // Fetch reviews again to update the list
       fetchReviews();
     } catch (error) {
       console.error('Error submitting review:', error);
     }
+  };
+
+  const renderStars = (currentRating) => {
+    return (
+      <div className="rating-stars">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            onClick={() => setRating(star)}
+            className={star <= currentRating ? 'active-star' : 'inactive-star'}
+          >
+            &#9733; {/* Star character */}
+          </span>
+        ))}
+      </div>
+    );
   };
 
   if (!business) {
@@ -77,51 +90,56 @@ const BusinessDetails = () => {
   }
 
   return (
-    <div>    
-        <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
-                        <button onClick={handleDashboard}>Dashboard</button>
-
-      <h1>{business.businessName}</h1>
-      {business.imageUrl && (
+    <div>
+     <NavBar />
+      <div className="business-container">
         <img 
+          className="business-image"
           src={`http://localhost:5000${business.imageUrl}`} 
           alt={business.businessName} 
-          style={{ width: '200px', height: 'auto' }} 
+           
         />
-      )}
-      <p>{business.address}</p>
-      <p>{business.website}</p>
-      <p>{business.category}</p>
-
-      <h2>Submit a Review</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Rating:</label>
-          <select value={rating} onChange={(e) => setRating(e.target.value)}>
-            <option value="0">Select Rating</option>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <option key={star} value={star}>{star}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Comment:</label>
-          <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-
-      <h2>Reviews</h2>
-      <div>
-        {reviews.map((review) => (
-          <div key={review._id}>
-            <p><strong>{review.userId.username}</strong></p>
-            <p>Rating: {review.rating}</p>
-            <p>{review.comment}</p>
-          </div>
-        ))}
-      </div>
+        <div className="business-details">
+        <h1>{business.businessName}</h1>
+        <p>{business.address}</p>
+        <p>
+            <a href={business.website} target="_blank" rel="noopener noreferrer">
+                {business.website}
+            </a>
+        </p>
+        <p className="category">{business.category}</p>
     </div>
+    
+</div>
+      
+      
+<form onSubmit={handleSubmit}>
+<h2>Submit a Review</h2>
+  <div className="rating-select">
+    <label>Rating:</label>
+    {renderStars(rating)} {/* Call renderStars to display the stars */}
+  </div>
+  <div>
+    <label>Comment:</label>
+    <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<h2>Reviews</h2>
+<div>
+  {reviews.map((review) => (
+    <div key={review._id} className="review">
+      <p><strong>{review.userId.username}</strong></p>
+      <div className="rating">
+        {renderStars(review.rating)} {/* Display stars for each review */}
+      </div>
+      <p>{review.comment}</p>
+    </div>
+  ))}
+</div>
+
+</div>
   );
 };
 
