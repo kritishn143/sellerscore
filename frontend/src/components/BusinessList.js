@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './BusinessList.css'; // Import the CSS file
+
 
 const BusinessList = () => {
   const [businesses, setBusinesses] = useState([]);
@@ -25,33 +27,33 @@ const BusinessList = () => {
   );
 
   return (
+    <div className="business-list">
+    <input
+      type="text"
+      placeholder="Search businesses..."
+      value={searchTerm}
+      onChange={e => setSearchTerm(e.target.value)}
+      className="search-input" // Apply the search input class
+    />
     <div>
-      <input
-        type="text"
-        placeholder="Search businesses..."
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-      />
-      <div>
-        {filteredBusinesses.map(business => (
-          <div key={business._id} style={{ marginBottom: '20px' }}>
-            <h2>
-              <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
-            </h2>
-            {business.imageUrl && (
-              <img 
-                src={`http://localhost:5000${business.imageUrl}`} 
-                alt={business.businessName} 
-                style={{ width: '100px', height: 'auto' }} 
-              />
-            )}
-            <p>{business.address}</p>
-            <p>{business.website}</p>
-            <p>{business.category}</p>
-          </div>
-        ))}
-      </div>
+      {filteredBusinesses.map(business => (
+        <div key={business._id} className="business-item"> {/* Apply business item class */}
+          <h2>
+            <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
+          </h2>
+          {business.imageUrl && (
+            <img 
+              src={`http://localhost:5000${business.imageUrl}`} 
+              alt={business.businessName} 
+            />
+          )}
+          <p>{business.address}</p>
+          <p>{business.website}</p>
+          <p>{business.category}</p>
+        </div>
+      ))}
     </div>
+  </div>
   );
 };
 

@@ -1,0 +1,61 @@
+AdminDashboard.css
+
+table {
+    width: 80%;
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse; /* Remove space between borders */
+}
+
+th, td {
+    border: 1px solid #6A5ACD; /* Slate Blue border */
+    padding: 10px; /* Padding for cells */
+    text-align: left; /* Align text to the left */
+}
+
+th {
+    background-color: #6A5ACD; /* Slate Blue header */
+    color: #000000; /* White text color */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for even rows */
+}
+
+tr:hover {
+    background-color: #e0e0e0; /* Light grey on hover */
+}
+/* AdminDashboard.css */
+
+button {
+    background-color: #6A5ACD; /* Slate Blue */
+    color: #ffffff; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 8px 16px; /* Comfortable padding */
+    margin: 5px; /* Space between buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+    font-size: 14px; /* Moderate font size */
+}
+
+button:hover {
+    background-color: #483D8B; /* Dark Slate Blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+button:disabled {
+    background-color: #B0C4DE; /* Light Steel Blue for disabled state */
+    cursor: not-allowed; /* Change cursor for disabled */
+}
+
+
+
+.status-approved {
+    color: #4CAF50; /* Green color for Approved */
+    font-weight: bold;
+}
+
+.status-declined {
+    color: #F44336; /* Red color for Declined */
+    font-weight: bold;
+}

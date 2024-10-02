@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const BusinessDetails = () => {
   const { name } = useParams();

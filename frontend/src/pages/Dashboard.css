@@ -1,0 +1,34 @@
+table {
+    width: 80%;
+    margin: 40px auto;
+    border-collapse: separate;
+    border-radius: 12px; /* Rounded corners for the table */
+    overflow: hidden; /* Hide overflow for rounded corners */
+  }
+  
+  th, td {
+    padding: 20px;
+    text-align: left;
+    background: #e0e0e0; /* Light background for cells */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light bottom border */
+    transition: box-shadow 0.3s; /* Transition effect for hover */
+  }
+  
+  th {
+    background: #ffffff; /* White background for header */
+    font-weight: bold;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.9); /* Neumorphic effect */
+  }
+  
+  td {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.9); /* Neumorphic effect for cells */
+  }
+  
+  tr:hover th, tr:hover td {
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -4px -4px 8px rgba(255, 255, 255, 0.9); /* Inset shadow on hover */
+  }
+  
+  tr {
+    transition: background-color 0.3s; /* Transition for hover effect */
+  }
+  

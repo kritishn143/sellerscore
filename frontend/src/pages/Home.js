@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BusinessList from '../components/BusinessList';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import './Home.css'; // Import CSS file
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -43,16 +45,19 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
-      
-      {/* Conditional rendering of login or dashboard button */}
-      {isLoggedIn ? (
-        <button onClick={handleDashboard}>Dashboard</button>
-      ) : (
-        <button onClick={handleLogin}>Login</button>
-      )}
+      <nav className="navbar"> {/* Nav Bar Container */}
+        <button className="navbar-button" onClick={handleHome}>Sellerscore</button> {/* Home Button */}
+        
+        {/* Conditional rendering of login or dashboard button */}
+        {isLoggedIn ? (
+          <button className="navbar-button" onClick={handleDashboard}>Dashboard</button>
+        ) : (
+          <button className="navbar-button" onClick={handleLogin}>Login</button>
+        )}
+      </nav>
 
       <h1>Top categories</h1>
+
       <ul>
         {categories.map(category => (
           <li key={category}>

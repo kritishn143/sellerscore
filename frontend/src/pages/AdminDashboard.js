@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import './AdminDashboard.css'; // Import the CSS file
+
 
 const AdminDashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -74,9 +77,7 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <button onClick={handleHome}>Home</button> {/* Home Button */}
-      <button onClick={handleLogout}>Logout</button>
-      <button onClick={handleDashboardNavigation}>Dashboard</button>
+     <NavBar />
 
       <h1>Admin Dashboard</h1>
       <table>

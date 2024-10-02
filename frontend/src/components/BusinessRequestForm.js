@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import './NavBar'; // Import the CSS file
+import './BusinessRequestForm.css'; // Import the CSS file
 const BusinessRequestForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const BusinessRequestForm = () => {
     const fetchBusinessRequest = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/users/business-request', {
+        const response = await axios.get('http://localhost:5000/api/users/business-requests', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFormData(response.data);
@@ -83,11 +84,12 @@ const BusinessRequestForm = () => {
 
   return (
     <div>
-            <button onClick={handleHome}>Sellerscore</button> {/* Home Button */}
+      <nav className="navbar"> {/* Navigation Bar */}
+        <button className="navbar-button" onClick={handleHome}>Sellerscore</button>
+        <button className="navbar-button" onClick={handleDashboardNavigation}>Dashboard</button>
+      </nav>
 
-            <button onClick={handleDashboardNavigation}>Dashboard</button>
-
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="business-request-form">
         <div>
           <label>Business Name:</label>
           <input type="text" name="businessName" value={formData.businessName} onChange={handleChange} required />

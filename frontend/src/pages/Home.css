@@ -1,0 +1,46 @@
+h1 {
+    font-size: 2em; /* Larger font size for the main heading */
+    color: #333; /* Darker color for better contrast */
+    margin-bottom: 20px; /* Space below the heading */
+    text-align: center; /* Center the heading */
+  }
+  
+  h2 {
+    font-size: 1.5em; /* Font size for subheading */
+    color: #555; /* Slightly lighter color for the subheading */
+    margin-top: 40px; /* Space above the subheading */
+    margin-bottom: 15px; /* Space below the subheading */
+    text-align: center; /* Center the subheading */
+  }
+  
+  ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    display: flex; /* Flexbox for a horizontal layout */
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  ul li {
+    margin: 10px; /* Space between list items */
+  }
+  
+  ul li a {
+    display: block; /* Make the link fill the entire list item */
+    padding: 10px 15px; /* Add padding around the link */
+    background-color:  #6A5ACD; /* Primary color for the link */
+    color: white; /* Text color for the link */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  ul li a:hover {
+    background-color: #483D8B; /* Darker shade on hover */
+  }
+  
+  .business-list {
+    margin-top: 30px; /* Space above the business list */
+    text-align: center; /* Center the business list */
+  }
+  

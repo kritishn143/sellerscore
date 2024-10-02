@@ -1,0 +1,28 @@
+/* Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+    background-color: #6A5ACD; /* Navbar background color (Slate Blue) */
+    padding: 10px 0; /* Vertical padding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+.navbar-button {
+    background-color: #ffffff; /* Button background color (White) */
+    color: #6A5ACD; /* Button text color (Slate Blue) */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px; /* Padding for buttons */
+    margin: 0 10px; /* Space between buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Transition effects */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Make text bold */
+}
+
+.navbar-button:hover {
+    background-color: #483D8B; /* Button background color on hover (Dark Slate Blue) */
+    color: #ffffff; /* Text color on hover (White) */
+}

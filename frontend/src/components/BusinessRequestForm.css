@@ -1,0 +1,58 @@
+/* src/components/BusinessRequestForm.css */
+.business-request-form {
+    max-width: 600px; /* Limit the width of the form */
+    margin: 20px auto; /* Center the form on the page */
+    padding: 20px; /* Add padding inside the form */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .business-request-form div {
+    margin-bottom: 15px; /* Space between form fields */
+  }
+  
+  .business-request-form label {
+    display: block; /* Stack labels above inputs */
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: bold; /* Make labels bold */
+  }
+  
+  .business-request-form input[type="text"],
+  .business-request-form select,
+  .business-request-form input[type="file"] {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+  }
+  
+  .business-request-form input[type="text"]:focus,
+  .business-request-form select:focus {
+    border-color: #007BFF; /* Change border color on focus */
+    outline: none; /* Remove outline */
+  }
+  
+  .business-request-form button[type="submit"] {
+    padding: 10px 15px; /* Button padding */
+    background-color: #6A5ACD; /* Green background */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition for background */
+    width: 100%; /* Full width for button */
+  }
+  
+  .business-request-form button[type="submit"]:hover {
+    background-color: #483D8B; /* Darker green on hover */
+  }
+  
+  .business-request-form img {
+    margin-top: 10px; /* Space above the image */
+    width: 100%; /* Responsive image */
+    max-width: 200px; /* Max width for the image */
+    height: auto; /* Maintain aspect ratio */
+  }

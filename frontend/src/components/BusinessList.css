@@ -1,0 +1,50 @@
+/* src/components/BusinessList.css (Adjust the path as needed) */
+
+.business-list {
+    max-width: 800px; /* Limit the width of the list */
+    margin: auto; /* Center the list */
+    padding: 20px; /* Add padding around the container */
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .search-input {
+    width: 100%; /* Full width for the input */
+    padding: 10px; /* Padding for the input */
+    margin-bottom: 20px; /* Space below the input */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners for the input */
+    font-size: 16px; /* Font size */
+  }
+  
+  .business-item {
+    border: 1px solid #e0e0e0; /* Light border around each business */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside each business item */
+    margin-bottom: 15px; /* Space below each business item */
+    background-color: #fff; /* White background for each business item */
+    transition: transform 0.2s; /* Smooth transform on hover */
+  }
+  
+  .business-item:hover {
+    transform: translateY(-2px); /* Slight lift effect on hover */
+  }
+  
+  .business-item h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 1.5em; /* Font size for business name */
+    color: #007BFF; /* Primary color for the business name */
+  }
+  
+  .business-item img {
+    margin-top: 10px; /* Space above the image */
+    border-radius: 5px; /* Rounded corners for the image */
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .business-item p {
+    margin: 5px 0; /* Margin above and below paragraphs */
+    color: #555; /* Slightly lighter color for paragraph text */
+  }
