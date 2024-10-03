@@ -50,11 +50,12 @@ const BusinessDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Submitted rating:', rating); // Debug log to check rating
     try {
       const token = localStorage.getItem('token');
       await axios.post('http://localhost:5000/api/users/review', {
         businessId: business._id,
-        rating,
+        rating, // Ensure the correct rating value is being sent
         comment,
       }, {
         headers: {
@@ -63,11 +64,12 @@ const BusinessDetails = () => {
       });
       setRating(0);
       setComment('');
-      fetchReviews();
+      fetchReviews(); // Refresh reviews after submission
     } catch (error) {
       console.error('Error submitting review:', error);
     }
   };
+  
 
   const renderStars = (currentRating) => {
     return (
@@ -75,8 +77,12 @@ const BusinessDetails = () => {
         {[1, 2, 3, 4, 5].map((star) => (
           <span
             key={star}
-            onClick={() => setRating(star)}
+            onClick={() => {
+              console.log(`Star ${star} clicked!`); // Debug log
+              setRating(star); // Update rating when a star is clicked
+            }}
             className={star <= currentRating ? 'active-star' : 'inactive-star'}
+            style={{ cursor: 'pointer' }} // Ensure the stars are visibly clickable
           >
             &#9733; {/* Star character */}
           </span>
@@ -84,7 +90,7 @@ const BusinessDetails = () => {
       </div>
     );
   };
-
+  
   if (!business) {
     return <div>Loading...</div>;
   }

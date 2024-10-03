@@ -84,12 +84,20 @@ label {
 }
 
 /* Star rating styling */
-.rating-stars {
+.active-star {
+    color: gold; /* Yellow for active stars */
     display: inline-flex; /* Changed to inline-flex to align stars */
     font-size: 30px; /* Increased star size */
-    color: #FFD700; /* Gold color for active stars */
     cursor: pointer;
-}
+  }
+  
+  .inactive-star {
+    color: #ccc; /* Gray for inactive stars */
+    display: inline-flex; /* Changed to inline-flex to align stars */
+    font-size: 30px; /* Increased star size */
+    cursor: pointer;
+  }
+  
 /* Reviews container styling */
 .reviews-container {
     max-width: 800px; /* Limit the maximum width */
