@@ -1,15 +1,14 @@
 // frontend/src/pages/Home.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BusinessList from '../components/BusinessList';
-import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
 import './Home.css'; // Import CSS file
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
+  const [currentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,10 +30,6 @@ const Home = () => {
     }
   }, []);
 
-  const handleHome = () => {
-    navigate('/'); 
-  };
-
   const handleLogin = () => {
     navigate('/login'); 
   };
@@ -46,10 +41,10 @@ const Home = () => {
   return (
     <div>
       <nav className="navbar"> {/* Nav Bar Container */}
-        
-      <Link to="/">
+        <Link to="/">
           <img src="/seller.gif" alt="score logo" className="logo" />
-        </Link>        {/* Conditional rendering of login or dashboard button */}
+        </Link>
+        {/* Conditional rendering of login or dashboard button */}
         {isLoggedIn ? (
           <button className="navbar-button" onClick={handleDashboard}>Dashboard</button>
         ) : (
@@ -64,17 +59,17 @@ const Home = () => {
           <li key={category}>
             <Link to={`/category/${category}`}>{category}</Link>
           </li>
-         ))}
-         </ul>
+        ))}
+      </ul>
    
-         <BusinessList />
-         <footer className="footer">
+      <BusinessList />
+      
+      <footer className="footer">
         <img src="/score.gif" alt="score logo" className="footer-logo" />
-        <p>&copy; 2023 Sellerscore. All rights reserved.</p>
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
       </footer>
     </div>
   );
 };
-
 
 export default Home;
