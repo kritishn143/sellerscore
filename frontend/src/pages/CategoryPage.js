@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
+
 const CategoryPage = () => {
   const { category } = useParams();
   const [businesses, setBusinesses] = useState([]);

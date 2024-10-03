@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './NavBar'; // Import the CSS file
 import './BusinessRequestForm.css'; // Import the CSS file
+import { Link } from 'react-router-dom';
+
 const BusinessRequestForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -39,10 +41,6 @@ const BusinessRequestForm = () => {
     }
   };
 
-
-  const handleHome = () => {
-    navigate('/'); 
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,8 +83,10 @@ const BusinessRequestForm = () => {
   return (
     <div>
       <nav className="navbar"> {/* Navigation Bar */}
-        <button className="navbar-button" onClick={handleHome}>Sellerscore</button>
-        <button className="navbar-button" onClick={handleDashboardNavigation}>Dashboard</button>
+   
+      <Link to="/">
+          <img src="/seller.gif" alt="score logo" className="logo" />
+        </Link>          <button className="navbar-button" onClick={handleDashboardNavigation}>Dashboard</button>
       </nav>
 
       <form onSubmit={handleSubmit} className="business-request-form">

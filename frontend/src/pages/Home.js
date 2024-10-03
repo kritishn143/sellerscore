@@ -46,9 +46,10 @@ const Home = () => {
   return (
     <div>
       <nav className="navbar"> {/* Nav Bar Container */}
-        <button className="navbar-button" onClick={handleHome}>Sellerscore</button> {/* Home Button */}
         
-        {/* Conditional rendering of login or dashboard button */}
+      <Link to="/">
+          <img src="/seller.gif" alt="score logo" className="logo" />
+        </Link>        {/* Conditional rendering of login or dashboard button */}
         {isLoggedIn ? (
           <button className="navbar-button" onClick={handleDashboard}>Dashboard</button>
         ) : (
@@ -63,12 +64,17 @@ const Home = () => {
           <li key={category}>
             <Link to={`/category/${category}`}>{category}</Link>
           </li>
-        ))}
-      </ul>
-      <h2>Approved Businesses</h2>
-      <BusinessList />
+         ))}
+         </ul>
+   
+         <BusinessList />
+         <footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; 2023 Sellerscore. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
+
 
 export default Home;

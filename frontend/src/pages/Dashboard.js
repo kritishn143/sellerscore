@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar'; // Use this path
 import './Dashboard.css'; // Import the CSS file
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -49,8 +50,10 @@ const Dashboard = () => {
   return (
     <div>
             <nav className="navbar"> {/* Navigation Bar */}
-        <button className="navbar-button" onClick={handleHome}>Home</button>
-        {isLoggedIn() && (
+   
+            <Link to="/">
+          <img src="/seller.gif" alt="score logo" className="logo" />
+        </Link>          {isLoggedIn() && (
           <button className="navbar-button" onClick={handleLogout}>Logout</button>
         )}
         <button className="navbar-button" onClick={handleBusinessRequest}>Business Request</button>
