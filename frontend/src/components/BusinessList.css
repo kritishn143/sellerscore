@@ -63,22 +63,47 @@
   
 }
 
+.details p {
+  margin: 5px 0; /* Margin above and below paragraphs */
+  color: #555; /* Slightly lighter color for paragraph text */
+}
+
 .business-rating {
   display: flex; /* Flexbox for rating layout */
   align-items: center; /* Center align items vertically */
   margin: 5px 0; /* Margin around rating */
 }
 
-.stars {
-  color: gold; /* Color for stars */
-  margin-right: 5px; /* Space between stars and review count */
+.rating-stars {
+  display: flex;
+  font-size: 28px;
 }
+
+.full-star {
+  color: #ffe100; /* Full star color */
+  position: relative;
+}
+
+.half-star {
+  color: lightgray; /* Empty star color */
+  position: relative;
+}
+
+.half-star::before {
+  content: '★';
+  color: #ffe100;;
+  position: absolute;
+  width: 50%; /* Only fill the left half */
+  overflow: hidden;
+  left: 0;
+}
+
+.empty-star {
+  color: lightgray; /* Empty star color */
+}
+
 
 .review-count {
   color: #888; /* Lighter color for review count */
-}
-
-.details p {
-  margin: 5px 0; /* Margin above and below paragraphs */
-  color: #555; /* Slightly lighter color for paragraph text */
+  font-size: 20px;
 }
