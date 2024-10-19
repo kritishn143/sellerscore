@@ -107,7 +107,16 @@ const renderStars = (currentRating) => {
             <div className="details">
               <p><strong>Category:</strong> {business.category}</p>
               <p><strong>Address:</strong> {business.address}</p>
-              <p><strong>Website:</strong> <a href={business.website} target="_blank" rel="noopener noreferrer">{business.website}</a></p>
+              <p>
+  <strong>Website:</strong> 
+  <a 
+    href={business.website.startsWith('http') ? business.website : `http://${business.website}`} 
+    target="_blank" 
+    rel="noopener noreferrer"
+  >
+    {business.website}
+  </a>
+</p>
               <div className="business-rating">
                 <span className="stars">{renderStars(averageRatings[business._id] || 0)}</span>
                 <span className="review-count">({reviewCounts[business._id] || 0} reviews)</span>
