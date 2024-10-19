@@ -1,4 +1,3 @@
-// frontend/src/components/BusinessList.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -50,33 +49,34 @@ const BusinessList = () => {
   const calculateAverageRating = (reviews) => {
     if (reviews.length === 0) return 0; // No reviews
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
-    return (totalRating / reviews.length).toFixed(1);
+    const average = (totalRating / reviews.length).toFixed(1);
+    console.log('Total Rating:', totalRating, 'Number of Reviews:', reviews.length, 'Average:', average);
+    return parseFloat(average); // Convert to float for accurate rendering
   };
 
-// Function to render stars with half-star support
-const renderStars = (currentRating) => {
-  const roundedRating = Math.round(currentRating * 2) / 2; // Round to nearest half
+  // Revised function to render stars with correct half-star positioning
+  const renderStars = (currentRating) => {
+    const fullStars = Math.floor(currentRating); // Get the number of full stars
+    const hasHalfStar = currentRating % 1 !== 0; // Check if there's a half-star
+    const totalStars = 5; // Total number of stars (fixed)
 
-  return (
-    <div className="rating-stars">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span
-          key={star}
-          className={
-            star <= roundedRating - 0.5
-              ? 'full-star'
-              : star === roundedRating
-              ? 'half-star'
-              : 'empty-star'
-          }
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-};
+    return (
+      <div className="rating-stars">
+        {/* Render full stars */}
+        {[...Array(fullStars)].map((_, index) => (
+          <span key={index} className="full-star">★</span>
+        ))}
 
+        {/* Render a half-star if applicable */}
+        {hasHalfStar && <span className="half-star">★</span>}
+
+        {/* Render empty stars to complete the total of 5 */}
+        {[...Array(totalStars - fullStars - (hasHalfStar ? 1 : 0))].map((_, index) => (
+          <span key={index} className="empty-star">★</span>
+        ))}
+      </div>
+    );
+  };
 
   const filteredBusinesses = businesses.filter(business =>
     business.businessName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -107,7 +107,17 @@ const renderStars = (currentRating) => {
             <div className="details">
               <p><strong>Category:</strong> {business.category}</p>
               <p><strong>Address:</strong> {business.address}</p>
-              <p><strong>Website:</strong> <a href={business.website} target="_blank" rel="noopener noreferrer">{business.website}</a></p>
+              <p>
+  <strong>Website:</strong> 
+  <a 
+    href={business.website.startsWith('http') ? business.website : `http://${business.website}`} 
+    target="_blank" 
+    rel="noopener noreferrer"
+  >
+    {business.website}
+  </a>
+</p>
+
               <div className="business-rating">
                 <span className="stars">{renderStars(averageRatings[business._id] || 0)}</span>
                 <span className="review-count">({reviewCounts[business._id] || 0} reviews)</span>
