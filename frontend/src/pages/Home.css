@@ -43,4 +43,54 @@ h1 {
     margin-top: 30px; /* Space above the business list */
     text-align: center; /* Center the business list */
   }
+  .recommendations {
+    max-width: 1200px; /* Increased width for more content */
+    margin: auto; /* Center the list */
+    padding: 20px; /* Add padding around the container */
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .recommendation-item {
+    margin-bottom: 15px; /* Space between different recommendations */
+    border: 1px solid #ddd; /* Light border around each recommendation */
+    padding: 10px;
+    border-radius: 6px; /* Rounded corners for individual items */
+    background-color: #fff; /* White background for individual items */
+    transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .recommendation-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+  }
+  
+  .recommended-business {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between name and rating */
+  }
+  
+  .business-name {
+    font-size: 1.2rem; /* Slightly larger font size for business names */
+    font-weight: bold; /* Bold font for emphasis */
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Bootstrap primary color for links */
+    transition: color 0.3s; /* Smooth transition for color change */
+  }
+  
+  .business-name:hover {
+    color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .stars {
+    display: flex; /* Flexbox for star alignment */
+    align-items: center; /* Center stars vertically */
+  }
+  
+  .review-count {
+    font-size: 0.9rem; /* Smaller font size for review count */
+    color: #666; /* Dark gray for a softer look */
+    margin-left: 10px; /* Space between stars and review count */
+  }
   
