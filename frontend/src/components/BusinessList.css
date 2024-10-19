@@ -60,7 +60,6 @@
   display: flex; /* Flexbox for details layout */
   flex-direction: column; /* Stack details vertically */
   justify-content: center; /* Center details vertically */
-  
 }
 
 .details p {
@@ -91,7 +90,7 @@
 
 .half-star::before {
   content: '★';
-  color: #ffe100;;
+  color: #ffe100;
   position: absolute;
   width: 50%; /* Only fill the left half */
   overflow: hidden;
@@ -102,8 +101,7 @@
   color: lightgray; /* Empty star color */
 }
 
-
 .review-count {
   color: #888; /* Lighter color for review count */
-  font-size: 20px;
+  font-size: 20px;
 }
