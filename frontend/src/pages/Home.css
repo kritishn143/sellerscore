@@ -1,96 +1,134 @@
 h1 {
-    font-size: 2em; /* Larger font size for the main heading */
-    color: #333; /* Darker color for better contrast */
-    margin-bottom: 20px; /* Space below the heading */
-    text-align: center; /* Center the heading */
-  }
-  
-  h2 {
-    font-size: 1.5em; /* Font size for subheading */
-    color: #555; /* Slightly lighter color for the subheading */
-    margin-top: 40px; /* Space above the subheading */
-    margin-bottom: 15px; /* Space below the subheading */
-    text-align: center; /* Center the subheading */
-  }
-  
-  ul {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove padding */
-    display: flex; /* Flexbox for a horizontal layout */
-    flex-wrap: wrap; /* Allow wrapping to the next line */
-    justify-content: center; /* Center items horizontally */
-  }
-  
-  ul li {
-    margin: 10px; /* Space between list items */
-  }
-  
-  ul li a {
-    display: block; /* Make the link fill the entire list item */
-    padding: 10px 15px; /* Add padding around the link */
-    background-color:  #6A5ACD; /* Primary color for the link */
-    color: white; /* Text color for the link */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline from links */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-  }
-  
-  ul li a:hover {
-    background-color: #483D8B; /* Darker shade on hover */
-  }
-  
-  .business-list {
-    margin-top: 30px; /* Space above the business list */
-    text-align: center; /* Center the business list */
-  }
-  .recommendations {
-    max-width: 1200px; /* Increased width for more content */
-    margin: auto; /* Center the list */
-    padding: 20px; /* Add padding around the container */
-    background-color: #f9f9f9; /* Light background for contrast */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
+  font-size: 2em; /* Larger font size for the main heading */
+  color: #333; /* Darker color for better contrast */
+  margin-bottom: 20px; /* Space below the heading */
+  text-align: center; /* Center the heading */
+}
+
+h2 {
+  font-size: 1.5em; /* Font size for subheading */
+  color: #555; /* Slightly lighter color for the subheading */
+  margin-top: 40px; /* Space above the subheading */
+  margin-bottom: 15px; /* Space below the subheading */
+  text-align: center; /* Center the subheading */
+}
+
+ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove padding */
+  display: flex; /* Flexbox for a horizontal layout */
+  flex-wrap: wrap; /* Allow wrapping to the next line */
+  justify-content: center; /* Center items horizontally */
+}
+
+ul li {
+  margin: 10px; /* Space between list items */
+}
+
+ul li a {
+  display: block; /* Make the link fill the entire list item */
+  padding: 10px 15px; /* Add padding around the link */
+  background-color: #6A5ACD; /* Primary color for the link */
+  color: white; /* Text color for the link */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove underline from links */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+ul li a:hover {
+  background-color: #483D8B; /* Darker shade on hover */
+}
+
+.business-list {
+  margin-top: 30px; /* Space above the business list */
+  text-align: center; /* Center the business list */
+}
+
+.recommendations {
+  display: flex; /* Use flexbox for the grid layout */
+  flex-wrap: wrap; /* Allow items to wrap into the next line */
+  justify-content: flex-start; /* Align items to the start */
+  max-width: 1200px; /* Increased width for more content */
+  margin: auto; /* Center the list */
+  padding: 20px; /* Add padding around the container */
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.recommendation-category {
+  width: 100%; /* Full width for each category */
+  margin-bottom: 30px; /* Space between different categories */
+}
+
+.recommendation-grid {
+  display: flex; /* Flexbox for the grid layout */
+  flex-wrap: wrap; /* Allow items to wrap */
+  justify-content: flex-start; /* Align items to the start */
+}
+
+.recommendation-item {
+  flex: 1 1 calc(33% - 20px); /* Three items per row with spacing */
+  margin-bottom: 15px; /* Space between different recommendations */
+  border: 1px solid #ddd; /* Light border around each recommendation */
+  padding: 10px;
+  border-radius: 6px; /* Rounded corners for individual items */
+  background-color: #fff; /* White background for individual items */
+  transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+.recommendation-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+.business-logo {
+  max-width: 100px; /* Set a maximum width for logos */
+  margin-right: 10px; /* Space between logo and text */
+}
+
+.recommended-business {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between name and rating */
+}
+
+.category-name {
+  font-size: 1.5rem; /* Slightly larger font size for category names */
+  font-weight: bold; /* Bold font for emphasis */
+  margin-top: 10px; /* Space above the category name */
+}
+
+.business-name {
+  font-size: 1.2rem; /* Slightly larger font size for business names */
+  font-weight: bold; /* Bold font for emphasis */
+  text-decoration: none; /* Remove underline from links */
+  color: #007bff; /* Bootstrap primary color for links */
+  transition: color 0.3s; /* Smooth transition for color change */
+}
+
+.business-name:hover {
+  color: #0056b3; /* Darker shade on hover */
+}
+
+.stars {
+  display: flex; /* Flexbox for star alignment */
+  align-items: center; /* Center stars vertically */
+}
+
+.review-count {
+  font-size: 0.9rem; /* Smaller font size for review count */
+  color: #666; /* Dark gray for a softer look */
+  margin-left: 10px; /* Space between stars and review count */
+}
+
+@media (max-width: 768px) {
   .recommendation-item {
-    margin-bottom: 15px; /* Space between different recommendations */
-    border: 1px solid #ddd; /* Light border around each recommendation */
-    padding: 10px;
-    border-radius: 6px; /* Rounded corners for individual items */
-    background-color: #fff; /* White background for individual items */
-    transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+    flex: 1 1 calc(50% - 20px); /* Two items per row for tablets */
   }
-  
-  .recommendation-item:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+@media (max-width: 480px) {
+  .recommendation-item {
+    flex: 1 1 100%; /* One item per row for mobile */
   }
-  
-  .recommended-business {
-    display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Space between name and rating */
-  }
-  
-  .business-name {
-    font-size: 1.2rem; /* Slightly larger font size for business names */
-    font-weight: bold; /* Bold font for emphasis */
-    text-decoration: none; /* Remove underline from links */
-    color: #007bff; /* Bootstrap primary color for links */
-    transition: color 0.3s; /* Smooth transition for color change */
-  }
-  
-  .business-name:hover {
-    color: #0056b3; /* Darker shade on hover */
-  }
-  
-  .stars {
-    display: flex; /* Flexbox for star alignment */
-    align-items: center; /* Center stars vertically */
-  }
-  
-  .review-count {
-    font-size: 0.9rem; /* Smaller font size for review count */
-    color: #666; /* Dark gray for a softer look */
-    margin-left: 10px; /* Space between stars and review count */
-  }
-  
+}

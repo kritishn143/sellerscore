@@ -8,8 +8,8 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [businesses, setBusinesses] = useState([]);
   const [averageRatings, setAverageRatings] = useState({});
-  const [reviewCounts, setReviewCounts] = useState({}); // New state for review counts
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
+  const [reviewCounts, setReviewCounts] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
 
@@ -36,47 +36,40 @@ const Home = () => {
     fetchCategories();
     fetchBusinesses();
 
-    // Simulate checking login status (replace with actual logic)
-    const token = localStorage.getItem('token'); // Example for checking login status
+    const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     }
   }, []);
 
-  // Function to fetch reviews and calculate average ratings and review counts
   const fetchRatingsAndReviews = async (businesses) => {
     const ratings = {};
-    const counts = {}; // Object to store review counts
+    const counts = {};
     for (const business of businesses) {
       try {
         const response = await axios.get('http://localhost:5000/api/users/reviews', {
-          params: {
-            businessId: business._id
-          }
+          params: { businessId: business._id }
         });
         const reviews = response.data;
         ratings[business._id] = calculateAverageRating(reviews);
-        counts[business._id] = reviews.length; // Store review count
+        counts[business._id] = reviews.length;
       } catch (error) {
         console.error('Error fetching reviews:', error);
       }
     }
     setAverageRatings(ratings);
-    setReviewCounts(counts); // Set review counts in state
+    setReviewCounts(counts);
   };
 
-  // Function to calculate average rating
   const calculateAverageRating = (reviews) => {
-    if (reviews.length === 0) return 0; // No reviews
+    if (reviews.length === 0) return 0;
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
     const average = (totalRating / reviews.length).toFixed(1);
-    return parseFloat(average); // Convert to float for accurate rendering
+    return parseFloat(average);
   };
 
-  // Function to get recommendations based on average ratings
   const getRecommendations = () => {
     const recommendations = {};
-
     businesses.forEach(business => {
       const category = business.category;
       const averageRating = averageRatings[business._id] || 0;
@@ -85,24 +78,21 @@ const Home = () => {
         recommendations[category] = {
           business: business,
           average: averageRating,
-          reviewCount: reviewCounts[business._id] || 0, // Include review count
+          reviewCount: reviewCounts[business._id] || 0,
         };
       }
     });
-
     return recommendations;
   };
 
-  // Get recommendations
   const recommendations = getRecommendations();
 
   return (
     <div>
-      <nav className="navbar"> {/* Nav Bar Container */}
+      <nav className="navbar">
         <Link to="/">
           <img src="/seller.gif" alt="score logo" className="logo" />
         </Link>
-        {/* Conditional rendering of login or dashboard button */}
         {isLoggedIn ? (
           <button className="navbar-button" onClick={() => navigate('/dashboard')}>Dashboard</button>
         ) : (
@@ -132,12 +122,11 @@ const Home = () => {
                   {recommendations[category].business.businessName}
                 </Link>
               </h2>
-              <span className="stars">
-                {/* Render the stars for the recommendation */}
-                {renderStars(recommendations[category].average)}
+              <span className="rating-display">
+                {recommendations[category].average}★ {/* Display average rating followed by a star */}
               </span>
               <span className="review-count">
-                ({recommendations[category].reviewCount} reviews) {/* Display review count */}
+                ({recommendations[category].reviewCount} reviews)
               </span>
             </div>
           </div>
@@ -148,27 +137,6 @@ const Home = () => {
         <img src="/score.gif" alt="score logo" className="footer-logo" />
         <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
       </footer>
-    </div>
-  );
-};
-
-const renderStars = (currentRating) => {
-  const fullStars = Math.floor(currentRating); // Get the number of full stars
-  const hasHalfStar = currentRating % 1 !== 0; // Check if there's a half-star
-  const totalStars = 5; // Total number of stars (fixed)
-
-  return (
-    <div className="rating-stars">
-      {/* Render full stars */}
-      {[...Array(fullStars)].map((_, index) => (
-        <span key={index} className="full-star">★</span>
-      ))}
-      {/* Render a half-star if applicable */}
-      {hasHalfStar && <span className="half-star">★</span>}
-      {/* Render empty stars to complete the total of 5 */}
-      {[...Array(totalStars - fullStars - (hasHalfStar ? 1 : 0))].map((_, index) => (
-        <span key={index} className="empty-star">★</span>
-      ))}
     </div>
   );
 };
