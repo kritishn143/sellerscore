@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import './AdminDashboard.css'; // Import the CSS file
-
+import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [feedback, setFeedback] = useState('');
   const [declineRequestId, setDeclineRequestId] = useState(null);
+  const [selectedRequests, setSelectedRequests] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,11 +20,12 @@ const AdminDashboard = () => {
         const response = await axios.get('http://localhost:5000/api/users/api/admin/business-requests', {
           headers: { Authorization: `Bearer ${token}` },
         });
-        
+
         setRequests(response.data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching business requests:', error);
+        setError('Failed to load business requests.');
+      } finally {
         setLoading(false);
       }
     };
@@ -33,7 +35,7 @@ const AdminDashboard = () => {
 
   const handleAction = async (requestId, action) => {
     if (action === 'decline' && !feedback) {
-      alert('Please provide feedback for declining this request.');
+      setError('Please provide feedback for declining this request.');
       return;
     }
 
@@ -44,12 +46,32 @@ const AdminDashboard = () => {
       });
 
       alert(`Business request ${action}d successfully!`);
-      setRequests(requests.filter(request => request._id !== requestId)); // Update state after approval/decline
+      setRequests(requests.filter(request => request._id !== requestId));
       setFeedback('');
       setDeclineRequestId(null);
     } catch (error) {
       console.error(`Error ${action}ing request:`, error);
-      alert(`Failed to ${action} request.`);
+      setError(`Failed to ${action} request. ${error.response?.data?.error || ''}`);
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete the selected requests?');
+    if (confirmDelete) {
+      try {
+        const token = localStorage.getItem('token');
+        await axios.delete('http://localhost:5000/api/users/business-requests', {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { ids: selectedRequests },
+        });
+
+        setRequests(requests.filter(request => !selectedRequests.includes(request._id)));
+        setSelectedRequests([]);
+        alert('Selected requests deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting requests:', error);
+        setError(`Failed to delete selected requests. ${error.response?.data?.error || ''}`);
+      }
     }
   };
 
@@ -63,26 +85,22 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
-  const handleHome = () => {
-    navigate('/'); 
-  };
-
-  const handleDashboardNavigation = () => {
-    navigate('/dashboard');
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-     <NavBar />
-
+      <NavBar />
       <h1>Admin Dashboard</h1>
+      {error && <div className="error">{error}</div>}
+      <button onClick={handleDeleteSelected} disabled={selectedRequests.length === 0}>
+        Delete Selected
+      </button>
       <table>
         <thead>
           <tr>
+            <th>Select</th>
             <th>Business Name</th>
             <th>Address</th>
             <th>Website</th>
@@ -95,6 +113,19 @@ const AdminDashboard = () => {
         <tbody>
           {requests.map(request => (
             <tr key={request._id}>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={selectedRequests.includes(request._id)}
+                  onChange={() => {
+                    setSelectedRequests(prev =>
+                      prev.includes(request._id)
+                        ? prev.filter(id => id !== request._id)
+                        : [...prev, request._id]
+                    );
+                  }}
+                />
+              </td>
               <td>{request.businessName}</td>
               <td>{request.address}</td>
               <td>{request.website}</td>
