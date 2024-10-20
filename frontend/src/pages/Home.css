@@ -1,3 +1,14 @@
+/* Main Content Styles */
+.main-content {
+  padding: 20px; /* Space around the main content */
+  max-width: 1200px; /* Limit width for larger screens */
+  margin: 80px auto 0; /* Center content and provide top margin below fixed navbar */
+  background-color: #ffffff; /* White background for clarity */
+  border-radius: 8px; /* Rounded corners for aesthetics */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Headings */
 h1 {
   font-size: 2em; /* Larger font size for the main heading */
   color: #333; /* Darker color for better contrast */
@@ -13,6 +24,7 @@ h2 {
   text-align: center; /* Center the subheading */
 }
 
+/* Category List Styles */
 ul {
   list-style-type: none; /* Remove default list styling */
   padding: 0; /* Remove padding */
@@ -39,11 +51,13 @@ ul li a:hover {
   background-color: #483D8B; /* Darker shade on hover */
 }
 
+/* Business List Styles */
 .business-list {
   margin-top: 30px; /* Space above the business list */
   text-align: center; /* Center the business list */
 }
 
+/* Recommendations Section */
 .recommendations {
   display: flex; /* Use flexbox for the grid layout */
   flex-wrap: wrap; /* Allow items to wrap into the next line */
@@ -81,17 +95,20 @@ ul li a:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow on hover */
 }
 
+/* Business Logo Styles */
 .business-logo {
   max-width: 100px; /* Set a maximum width for logos */
   margin-right: 10px; /* Space between logo and text */
 }
 
+/* Recommended Business Styles */
 .recommended-business {
   display: flex;
   align-items: center; /* Align items vertically */
   justify-content: space-between; /* Space between name and rating */
 }
 
+/* Category and Business Name Styles */
 .category-name {
   font-size: 1.5rem; /* Slightly larger font size for category names */
   font-weight: bold; /* Bold font for emphasis */
@@ -110,6 +127,7 @@ ul li a:hover {
   color: #0056b3; /* Darker shade on hover */
 }
 
+/* Stars and Review Count Styles */
 .stars {
   display: flex; /* Flexbox for star alignment */
   align-items: center; /* Center stars vertically */
@@ -121,6 +139,7 @@ ul li a:hover {
   margin-left: 10px; /* Space between stars and review count */
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .recommendation-item {
     flex: 1 1 calc(50% - 20px); /* Two items per row for tablets */
