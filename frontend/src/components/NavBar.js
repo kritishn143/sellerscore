@@ -14,13 +14,16 @@ const Navbar = () => {
   const handleDashboardNavigation = () => {
     navigate('/dashboard');
   };
+  
 
   return (
     <nav className="navbar">
    
    <Link to="/">
           <img src="/seller.gif" alt="score logo" className="logo" />
-        </Link>        <button className="navbar-button" onClick={handleDashboardNavigation}>Dashboard</button>
+        </Link>
+        <button className="navbar-button" onClick={handleDashboardNavigation}>Dashboard</button>
+        
     </nav>
   );
 };

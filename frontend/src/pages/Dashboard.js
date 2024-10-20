@@ -1,9 +1,8 @@
+// frontend/src/pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar'; // Use this path
+import { useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css'; // Import the CSS file
-import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -43,25 +42,28 @@ const Dashboard = () => {
     navigate('/admin-dashboard');
   };
 
-  const handleHome = () => {
-    navigate('/'); 
+  const handleUserProfile = () => {
+    navigate('/useraccount'); // Navigate to User Profile page
   };
 
   return (
     <div>
-            <nav className="navbar"> {/* Navigation Bar */}
-   
-            <Link to="/">
+      <nav className="navbar"> {/* Navigation Bar */}
+        <Link to="/">
           <img src="/seller.gif" alt="score logo" className="logo" />
-        </Link>          {isLoggedIn() && (
-          <button className="navbar-button" onClick={handleLogout}>Logout</button>
+        </Link>
+        {isLoggedIn() && (
+          <>
+            <button className="navbar-button" onClick={handleLogout}>Logout</button>
+            <button className="navbar-button" onClick={handleBusinessRequest}>Business Request</button>
+            <button className="navbar-button" onClick={handleUserProfile}>Profile</button> {/* User Profile link */}
+            {role === 'admin' && (
+              <button className="navbar-button" onClick={handleAdminDashboard}>Admin Dashboard</button>
+            )}
+          </>
         )}
-        <button className="navbar-button" onClick={handleBusinessRequest}>Business Request</button>
-        {role === 'admin' && (
-          <button className="navbar-button" onClick={handleAdminDashboard}>Admin Dashboard</button>
-        )}
-      </nav>    <h1>User Dashboard</h1>
-
+      </nav>
+      <h1>User Dashboard</h1>
       <table>
         <thead>
           <tr>
