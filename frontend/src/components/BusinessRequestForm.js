@@ -109,7 +109,7 @@ const BusinessRequestForm = () => {
             <option value="Finance">Finance</option>
             <option value="Travel Company">Travel Company</option>
             <option value="Health">Health</option>
-            <option value="Store">Furniture Store</option>
+            <option value="Store">Store</option>
             <option value="Food and Beverage">Food & Beverage</option>
             <option value="Electronics and Technology">Electronics & Technology</option>
             <option value="Insurance Agency">Insurance Agency</option>

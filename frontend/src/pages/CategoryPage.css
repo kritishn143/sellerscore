@@ -1,56 +1,67 @@
-.category-page {
-    max-width: 1200px; /* Increased width for more content */
-  margin: auto; /* Center the list */
-  padding: 20px; /* Add padding around the container */
-  background-color: #f9f9f9; /* Light background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  .category-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #4b0082; /* Deep purple color for title */
-  }
-  
-  .business_list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout */
-    gap: 20px; /* Space between items */
-  }
-  
-  .business_item {
-    background-color: #ffffff; /* White background for each business item */
-    border: 1px solid #ddd; /* Light border for definition */
-    border-radius: 8px; /* Rounded corners */
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.2s; /* Smooth transform on hover */
-  }
-  
-  .business_item:hover {
-    transform: scale(1.02); /* Slightly scale up on hover */
-  }
-  
-  .business_name {
-    font-size: 1.5rem;
-    color: #333; /* Dark color for business name */
-    margin-bottom: 10px;
-  }
-  
-  .business_address,
-  .business_website,
-  .business_category {
-    font-size: 1rem;
-    color: #555; /* Gray for additional information */
-    margin: 5px 0; /* Spacing between paragraphs */
-  }
-  
-  .business_image {
-    width: 100%; /* Full width of the container */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 5px; /* Slightly rounded image corners */
-    margin-top: 10px; /* Space above the image */
-  }
-  
+.category-page-container {
+  padding: 20px;
+}
+
+.category-page-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-page-business-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.category-page-business-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  max-width: 400px;
+  transition: transform 0.3s;
+}
+
+.category-page-business-card:hover {
+  transform: scale(1.05);
+}
+
+.category-page-business-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-page-business-image {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.category-page-business-info {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.category-page-business-name {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.category-page-business-name a {
+  text-decoration: none;
+  color: #333;
+}
+
+.category-page-business-address,
+.category-page-business-website,
+.category-page-business-category {
+  font-size: 1em;
+  margin: 5px 0;
+}

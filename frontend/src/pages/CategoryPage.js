@@ -32,28 +32,34 @@ const CategoryPage = () => {
   };
 
   return (
-    <><NavBar />
-    <div className="category-page">
-      <h1 className="category-title">Top Businesses in {category}</h1>
-      <div className="business_list">
-        {businesses.map(business => (
-          <div key={business._id} className="business_item">
-            <h2 className="business_name">
-              <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
-            </h2>
-            <p className="business_address">{business.address}</p>
-            <p className="business_website">{business.website}</p>
-            <p className="business_category">{business.category}</p>
-            {business.imageUrl && (
-              <img
-                src={`http://localhost:5000${business.imageUrl}`}
-                alt={business.businessName}
-                className="business_image" />
-            )}
-          </div>
-        ))}
+    <>
+      <NavBar />
+      <div className="category-page-container">
+        <h1 className="category-page-title">Top Businesses in {category}</h1>
+        <div className="category-page-business-list">
+          {businesses.map(business => (
+            <div key={business._id} className="category-page-business-card">
+              <div className="category-page-business-image-container">
+                {business.imageUrl && (
+                  <img
+                    src={`http://localhost:5000${business.imageUrl}`}
+                    alt={business.businessName}
+                    className="category-page-business-image" />
+                )}
+              </div>
+              <div className="category-page-business-info">
+                <h2 className="category-page-business-name">
+                  <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
+                </h2>
+                <p className="category-page-business-address">{business.address}</p>
+                <p className="category-page-business-website">{business.website}</p>
+                <p className="category-page-business-category">{business.category}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div></>
+    </>
   );
 };
 
