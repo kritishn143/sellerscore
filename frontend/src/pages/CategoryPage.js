@@ -1,17 +1,14 @@
-// frontend/src/pages/CategoryPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-
-
+import './CategoryPage.css'; // Import the CSS file
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [businesses, setBusinesses] = useState([]);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const fetchBusinesses = async () => {
@@ -27,40 +24,38 @@ const CategoryPage = () => {
   }, [category]);
 
   const handleHome = () => {
-    navigate('/'); 
+    navigate('/');
   };
 
   const handleDashboard = () => {
     navigate('/dashboard');
   };
 
-
   return (
     <div className="category-page">
-    {/* Include the NavBar here */}
-    <NavBar />  {/* This will render the navbar */}
+      <NavBar /> {/* This will render the navbar */}
 
-    <h1 className="category-title">Top Businesses in {category}</h1>
-    <div className="business-list">
-      {businesses.map(business => (
-        <div key={business._id} className="business-item">
-          <h2 className="business-name">
-            <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
-          </h2>
-          <p>{business.address}</p>
-          <p>{business.website}</p>
-          <p>{business.category}</p>
-          {business.imageUrl && (
-            <img 
-              src={`http://localhost:5000${business.imageUrl}`} 
-              alt={business.businessName} 
-              className="business-image"
-            />
-          )}
-        </div>
-      ))}
+      <h1 className="category-title">Top Businesses in {category}</h1>
+      <div className="business_list">
+        {businesses.map(business => (
+          <div key={business._id} className="business_item">
+            <h2 className="business_name">
+              <Link to={`/business/${business.businessName}`}>{business.businessName}</Link>
+            </h2>
+            <p className="business_address">{business.address}</p>
+            <p className="business_website">{business.website}</p>
+            <p className="business_category">{business.category}</p>
+            {business.imageUrl && (
+              <img 
+                src={`http://localhost:5000${business.imageUrl}`} 
+                alt={business.businessName} 
+                className="business_image"
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
   );
 };
 

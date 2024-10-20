@@ -112,26 +112,36 @@ const Home = () => {
       <BusinessList />
       
       <h2>Recommended Businesses by Category</h2>
-      <div className="recommendations">
-        {Object.keys(recommendations).map(category => (
-          <div key={category} className="recommendation-item">
-            <h3>{category}</h3>
-            <div className="recommended-business">
-              <h2 className="business-name">
-                <Link to={`/business/${recommendations[category].business.businessName}`}>
-                  {recommendations[category].business.businessName}
-                </Link>
-              </h2>
-              <span className="rating-display">
-                {recommendations[category].average}★ {/* Display average rating followed by a star */}
-              </span>
-              <span className="review-count">
-                ({recommendations[category].reviewCount} reviews)
-              </span>
-            </div>
-          </div>
-        ))}
+<div className="recommendations">
+  {Object.keys(recommendations)
+    .sort((a, b) => {
+      // Sort by average rating (high to low)
+      if (recommendations[b].average !== recommendations[a].average) {
+        return recommendations[b].average - recommendations[a].average;
+      }
+      // If ratings are equal, sort by review count (high to low)
+      return recommendations[b].reviewCount - recommendations[a].reviewCount;
+    })
+    .map(category => (
+      <div key={category} className="recommendation-item">
+        <h3>{category}</h3>
+        <div className="recommended-business">
+          <h2 className="business-name">
+            <Link to={`/business/${recommendations[category].business.businessName}`}>
+              {recommendations[category].business.businessName}
+            </Link>
+          </h2>
+          <span className="rating-display">
+            {recommendations[category].average}★ {/* Display average rating followed by a star */}
+          </span>
+          <span className="review-count">
+            ({recommendations[category].reviewCount} reviews)
+          </span>
+        </div>
       </div>
+    ))}
+</div>
+
 
       <footer className="footer">
         <img src="/score.gif" alt="score logo" className="footer-logo" />
