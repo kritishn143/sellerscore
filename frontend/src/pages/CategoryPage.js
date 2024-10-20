@@ -32,8 +32,8 @@ const CategoryPage = () => {
   };
 
   return (
-    <div className="category-page">
-      <NavBar /> {/* This will render the navbar */}
+    <><NavBar /><div className="category-page">
+
 
       <h1 className="category-title">Top Businesses in {category}</h1>
       <div className="business_list">
@@ -46,16 +46,15 @@ const CategoryPage = () => {
             <p className="business_website">{business.website}</p>
             <p className="business_category">{business.category}</p>
             {business.imageUrl && (
-              <img 
-                src={`http://localhost:5000${business.imageUrl}`} 
-                alt={business.businessName} 
-                className="business_image"
-              />
+              <img
+                src={`http://localhost:5000${business.imageUrl}`}
+                alt={business.businessName}
+                className="business_image" />
             )}
           </div>
         ))}
       </div>
-    </div>
+    </div></>
   );
 };
 
