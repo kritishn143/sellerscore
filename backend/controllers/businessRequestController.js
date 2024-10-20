@@ -1,6 +1,5 @@
 const BusinessRequest = require('../models/businessRequest');
 const multer = require('multer');
-const path = require('path');
 const Review = require('../models/review');
 
 // Set up multer storage for image uploads
@@ -127,6 +126,27 @@ const declineBusinessRequest = async (req, res) => {
   }
 };
 
+// Delete a single business request by ID
+const deleteBusinessRequest = async (req, res) => {
+  try {
+    await BusinessRequest.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Business request deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error deleting business request' });
+  }
+};
+
+// Delete multiple business requests by IDs
+const deleteBusinessRequests = async (req, res) => {
+  const { ids } = req.body; // Expecting an array of IDs in the request body
+
+  try {
+    await BusinessRequest.deleteMany({ _id: { $in: ids } });
+    res.status(200).json({ message: 'Business requests deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error deleting business requests' });
+  }
+};
 
 // Submit a review for a business
 const submitReview = async (req, res) => {
@@ -148,7 +168,6 @@ const submitReview = async (req, res) => {
   }
 };
 
-
 // Fetch reviews for a business
 const getReviews = async (req, res) => {
   const { businessId } = req.query;
@@ -161,8 +180,6 @@ const getReviews = async (req, res) => {
   }
 };
 
-module.exports = { submitReview, getReviews };
-
 // Export all handlers
 module.exports = {
   submitBusinessRequest,
@@ -170,6 +187,8 @@ module.exports = {
   declineBusinessRequest,
   getUserBusinessRequests,
   updateBusinessRequestStatus,
+  deleteBusinessRequest,
+  deleteBusinessRequests,
   submitReview,
   getReviews,
 };
