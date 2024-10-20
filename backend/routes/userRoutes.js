@@ -1,12 +1,27 @@
 // backend/routes/userRoutes.js
 
 const express = require('express');
-const { register, login } = require('../controllers/userController');
-const { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, getUserBusinessRequests } = require('../controllers/businessRequestController');
+const {
+  register,
+  login,
+  updateUserProfile,
+  updateBusinessRequest,
+  getBusinessRequests,
+  getUserProfile,
+  deleteBusinessRequest,
+} = require('../controllers/userController');
+const {
+  submitBusinessRequest,
+  approveBusinessRequest,
+  declineBusinessRequest,
+  getUserBusinessRequests,
+  deleteBusinessRequests,
+  submitReview,
+  getReviews,
+} = require('../controllers/businessRequestController');
 const adminOnly = require('../middleware/role');
 const auth = require('../middleware/auth');
 const BusinessRequest = require('../models/businessRequest');
-const { submitReview, getReviews } = require('../controllers/businessRequestController');
 
 const router = express.Router();
 
@@ -18,6 +33,12 @@ router.put('/business-request/:id/decline', auth, adminOnly, declineBusinessRequ
 router.get('/business-requests', auth, getUserBusinessRequests);
 router.post('/review', auth, submitReview);
 router.get('/reviews', getReviews);
+router.get('/myprofile', auth, getUserProfile);
+router.put('/updateuserprofile', auth, updateUserProfile);
+router.get('/mybusiness', auth, getBusinessRequests);
+router.put('/business-request/:id/edit', auth, updateBusinessRequest); // Edit business request
+router.delete('/business-request/:id', auth, deleteBusinessRequest); // Delete business request
+
 // Admin route to get all business requests
 router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => {
   try {
@@ -27,6 +48,9 @@ router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => 
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+// Endpoint to delete multiple business requests
+router.delete('/business-requests', auth, adminOnly, deleteBusinessRequests); // New route for bulk deletion
 
 // Endpoint to fetch approved businesses
 router.get('/approved-businesses', async (req, res) => {
