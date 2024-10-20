@@ -1,7 +1,7 @@
 // backend/routes/userRoutes.js
 
 const express = require('express');
-const { register, login } = require('../controllers/userController');
+const { register, login,updateUserProfile,updateBusinessRequest,getBusinessRequests,getUserProfile, deleteBusinessRequest } = require('../controllers/userController');
 const { submitBusinessRequest, approveBusinessRequest, declineBusinessRequest, getUserBusinessRequests } = require('../controllers/businessRequestController');
 const adminOnly = require('../middleware/role');
 const auth = require('../middleware/auth');
@@ -18,6 +18,11 @@ router.put('/business-request/:id/decline', auth, adminOnly, declineBusinessRequ
 router.get('/business-requests', auth, getUserBusinessRequests);
 router.post('/review', auth, submitReview);
 router.get('/reviews', getReviews);
+router.get('/myprofile',auth,getUserProfile)
+router.put('/updateuserprofile',auth,updateUserProfile)
+router.get('/mybusiness',auth,getBusinessRequests)
+router.put('/business-request/:id/edit', auth, updateBusinessRequest); // Edit business request
+router.delete('/business-request/:id', auth, deleteBusinessRequest); // Delete business request
 // Admin route to get all business requests
 router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => {
   try {

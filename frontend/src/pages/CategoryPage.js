@@ -32,9 +32,8 @@ const CategoryPage = () => {
   };
 
   return (
-    <><NavBar /><div className="category-page">
-
-
+    <><NavBar />
+    <div className="category-page">
       <h1 className="category-title">Top Businesses in {category}</h1>
       <div className="business_list">
         {businesses.map(business => (

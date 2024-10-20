@@ -1,0 +1,109 @@
+
+.container {
+    max-width: 800px; /* Adjusted width for two boxes */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2, h3, h4 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .profile-box, .business-requests-box {
+    background-color: #ffffff; /* White background for both boxes */
+    border: 1px solid #ccc; /* Border to define boxes */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 20px; /* Spacing between boxes */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin: 10px 0 5px;
+  }
+  
+  input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .button-group {
+    display: flex;
+    justify-content: center; /* This centers the buttons horizontally */
+    gap: 10px; /* Adjust the gap between buttons */
+    margin-top: 20px; /* Optional: Add margin for spacing above the buttons */
+  }
+  
+  .button-group button {
+    padding: 10px 20px; /* Optional: Adjust padding for buttons */
+  }
+  button {
+    margin-top: 10px; /* Reduced margin for buttons */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0066c5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background: #e0f7fa;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space out item and buttons */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .request-buttons {
+    display: flex; /* Align edit and delete buttons in a row */
+    gap: 10px; /* Space between buttons */
+  }
+  .form-row-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the gap between the two fields as needed */
+  }
+  
+  .form-row {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row label {
+    margin-bottom: 5px;
+  }
+  
+  .form-row input {
+    width: 100%;
+  }

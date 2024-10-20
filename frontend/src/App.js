@@ -11,7 +11,7 @@ import CategoryPage from './pages/CategoryPage';
 import BusinessDetails from './pages/BusinessDetails';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
-
+import UserAccount from './pages/UserAccount'; // Import UserProfile
 
 const App = () => {
   return (
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
           <Route path="/admin-dashboard" element={<AdminRoute component={AdminDashboard} />} />
           <Route path="/business-request" element={<ProtectedRoute component={BusinessRequestForm} />} />
+          <Route path="/useraccount" element={<ProtectedRoute component={UserAccount} />} /> {/* New route for UserProfile */}
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/business/:name" element={<BusinessDetails />} /> {/* Updated route for business details */}
         </Routes>

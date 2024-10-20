@@ -106,12 +106,11 @@ const BusinessRequestForm = () => {
           <label>Category:</label>
           <select name="category" value={formData.category} onChange={handleChange} required>
             <option value="">Select a category</option>
-            <option value="Bank">Bank</option>
-            <option value="Travel Insurance Company">Travel Insurance Company</option>
-            <option value="Car Dealer">Car Dealer</option>
-            <option value="Furniture Store">Furniture Store</option>
-            <option value="Jewelry Store">Jewelry Store</option>
-            <option value="Clothing Store">Clothing Store</option>
+            <option value="Finance">Finance</option>
+            <option value="Travel Company">Travel Company</option>
+            <option value="Health">Health</option>
+            <option value="Store">Furniture Store</option>
+            <option value="Food and Beverage">Food & Beverage</option>
             <option value="Electronics and Technology">Electronics & Technology</option>
             <option value="Insurance Agency">Insurance Agency</option>
           </select>
