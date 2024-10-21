@@ -98,77 +98,81 @@ const AdminDashboard = () => {
       <button onClick={handleDeleteSelected} disabled={selectedRequests.length === 0}>
         Delete Selected
       </button>
-      <table>
-        <thead>
-          <tr>
-            <th>Select</th>
-            <th>Business Name</th>
-            <th>Address</th>
-            <th>Website</th>
-            <th>Category</th>
-            <th>Image</th>
-            <th>Action</th>
-            <th>Feedbacks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requests.map(request => (
-            <tr key={request._id}>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={selectedRequests.includes(request._id)}
-                  onChange={() => {
-                    setSelectedRequests(prev =>
-                      prev.includes(request._id)
-                        ? prev.filter(id => id !== request._id)
-                        : [...prev, request._id]
-                    );
-                  }}
-                />
-              </td>
-              <td>{request.businessName}</td>
-              <td>{request.address}</td>
-              <td>{request.website}</td>
-              <td>{request.category}</td>
-              <td>
-                {request.imageUrl && (
-                  <img 
-                    src={`http://localhost:5000${request.imageUrl}`} 
-                    alt={request.businessName} 
-                    style={{ width: '100px', height: 'auto' }} 
-                  />
+      <div className="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Business Name</th>
+        <th>Address</th>
+        <th>Website</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Action</th>
+        <th>Feedbacks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {requests.map(request => (
+        <tr key={request._id}>
+          <td>
+            <input
+              type="checkbox"
+              checked={selectedRequests.includes(request._id)}
+              onChange={() => {
+                setSelectedRequests(prev =>
+                  prev.includes(request._id)
+                    ? prev.filter(id => id !== request._id)
+                    : [...prev, request._id]
+                );
+              }}
+            />
+          </td>
+          <td>{request.businessName}</td>
+          <td>{request.address}</td>
+          <td>{request.website}</td>
+          <td>{request.category}</td>
+          <td>
+            {request.imageUrl && (
+              <img 
+                src={`http://localhost:5000${request.imageUrl}`} 
+                alt={request.businessName} 
+                className="business-image" 
+              />
+            )}
+          </td>
+          <td>
+            {request.status === 'pending' && (
+              <div className="action-button">
+                <button className="approve-button" onClick={() => handleAction(request._id, 'approve')}>Approve</button>
+                <button className="decline-button" onClick={() => setDeclineRequestId(request._id)}>Decline</button>
+                {declineRequestId === request._id && (
+                  <div className="feedback-form">
+                    <label>
+                      Please provide feedback for declining this request:
+                      <input 
+                        type="text" 
+                        value={feedback} 
+                        onChange={(e) => setFeedback(e.target.value)} 
+                        className="feedback-input"
+                      />
+                    </label>
+                    <button className="submit-feedback" onClick={() => handleAction(request._id, 'decline')}>Submit</button>
+                    <button className="cancel-feedback" onClick={handleCancel}>Cancel</button>
+                  </div>
                 )}
-              </td>
-              <td>
-                {request.status === 'pending' && (
-                  <>
-                    <button onClick={() => handleAction(request._id, 'approve')}>Approve</button>
-                    <button onClick={() => setDeclineRequestId(request._id)}>Decline</button>
-                    {declineRequestId === request._id && (
-                      <div>
-                        <label>
-                          Please provide feedback for declining this request:
-                          <input 
-                            type="text" 
-                            value={feedback} 
-                            onChange={(e) => setFeedback(e.target.value)} 
-                          />
-                        </label>
-                        <button onClick={() => handleAction(request._id, 'decline')}>Submit</button>
-                        <button onClick={handleCancel}>Cancel</button>
-                      </div>
-                    )}
-                  </>
-                )}
-                {request.status === 'declined' && <span>Declined</span>}
-                {request.status === 'approved' && <span>Approved</span>}
-              </td>
-              <td>{request.status === 'declined' ? request.feedback : ''}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            )}
+            {request.status === 'declined' && <span className="status-declined">Declined</span>}
+            {request.status === 'approved' && <span className="status-approved">Approved</span>}
+          </td>
+          <td>{request.status === 'declined' ? request.feedback : ''}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
       <footer className="footer">
         <img src="/score.gif" alt="score logo" className="footer-logo" />
         <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>

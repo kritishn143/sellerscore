@@ -1,61 +1,129 @@
-AdminDashboard.css
 
-table {
-    width: 80%;
-    margin: 20px auto; /* Center the table */
-    border-collapse: collapse; /* Remove space between borders */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 th, td {
-    border: 1px solid #6A5ACD; /* Slate Blue border */
-    padding: 10px; /* Padding for cells */
-    text-align: left; /* Align text to the left */
+    border: 1px solid #8A2BE2; /* Thinnest possible purple border for table cells */
+    padding: 12px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
 }
 
 th {
-    background-color: #6A5ACD; /* Slate Blue header */
-    color: #000000; /* White text color */
+    background-color: #f9f9f9; /* Light background for header */
+    color: #333;
+    border-bottom: 2px solid #8A2BE2;
+    position: sticky; /* Makes the header sticky */
+  top: 0; /* Position it at the top */
+  z-index: 1; /* Ensures the header stays above other content */
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light grey for even rows */
+    background-color: #fcfcfc; /* Light grey for even rows */
 }
 
 tr:hover {
-    background-color: #e0e0e0; /* Light grey on hover */
-}
-/* AdminDashboard.css */
-
-button {
-    background-color: #6A5ACD; /* Slate Blue */
-    color: #ffffff; /* White text */
-    border: none; /* Remove default border */
-    border-radius: 4px; /* Slightly rounded corners */
-    padding: 8px 16px; /* Comfortable padding */
-    margin: 5px; /* Space between buttons */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
-    font-size: 14px; /* Moderate font size */
+    background-color: #f1f1f1; /* Light grey on hover */
+  cursor: pointer;
 }
 
-button:hover {
-    background-color: #483D8B; /* Dark Slate Blue on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+table {
+    width: 80%;
+    margin: 0px auto; /* Center the table */
+    border-collapse: collapse; /* Remove space between borders */
+    
 }
-
-button:disabled {
-    background-color: #B0C4DE; /* Light Steel Blue for disabled state */
-    cursor: not-allowed; /* Change cursor for disabled */
-}
-
-
-
-.status-approved {
-    color: #4CAF50; /* Green color for Approved */
+.table-container {
+    max-height: 400px; /* Set the maximum height for the table */
+    overflow-y: auto;  /* Enables vertical scrolling when the content overflows */
+    border: 1px solid #ccc; /* Optional: adds a border around the table */
+    border-radius: 5px; /* Optional: rounds the corners of the container */
+  }
+/* Image styling */
+.business-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #8A2BE2; /* Thinnest possible purple border around images */
+  }
+  
+  /* Button styles */
+  button {
+    padding: 8px 16px;
+    margin: 5px;
+    border: 1px solid #8A2BE2; /* Thinnest possible purple border for buttons */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
     font-weight: bold;
-}
-
-.status-declined {
-    color: #F44336; /* Red color for Declined */
+  }
+  
+  .approve-button {
+    background-color: #8bc34a; /* Calm green */
+    color: white;
+  }
+  
+  .decline-button {
+    background-color: #e57373; /* Calm red */
+    color: white;
+  }
+  
+  .approve-button:hover, .decline-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Feedback form */
+  .feedback-form {
+    margin-top: 10px;
+  }
+  
+  .feedback-input {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #8A2BE2; /* Thinnest possible purple border */
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .submit-feedback, .cancel-feedback {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: 1px solid #8A2BE2; /* Thinnest possible purple border for feedback buttons */
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: bold;
-}
+  }
+  
+  .submit-feedback {
+    background-color: #64b5f6; /* Calm blue */
+    color: white;
+  }
+  
+  .cancel-feedback {
+    background-color: #90a4ae; /* Calm grey */
+    color: white;
+  }
+  
+  /* Status indicators */
+  .status-approved {
+    color: #8bc34a; /* Calm green */
+    font-weight: bold;
+  }
+  
+  .status-declined {
+    color: #e57373; /* Calm red */
+    font-weight: bold;
+  }
