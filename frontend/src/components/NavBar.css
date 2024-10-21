@@ -13,7 +13,6 @@
 .navbar {
     display: flex;
     justify-content: flex-end; /* Align items to the right */
-    align-items: center; /* Center items vertically */
     background-color: var(--navbar-bg); /* Navbar background color */
     padding: 10px 20px; /* Vertical and horizontal padding */
     box-shadow: 0 4px 10px var(--shadow-color); /* Shadow for depth */
