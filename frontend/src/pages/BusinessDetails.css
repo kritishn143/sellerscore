@@ -1,178 +1,162 @@
-.page-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-}
-/* Business profile image */
-.business-profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border: 2px solid #ccc;
-}
+/* BusinessDetails.css */
 
-.business-info {
-  text-align: center; /* Center align business details */
+.page-card {
+  padding: 20px;
+  background-color: #f4f4f4;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card-container {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .column-card {
+  flex: 1;
+  margin: 0 20px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 45%;
 }
 
-.review-form {
-  display: flex;
-  flex-direction: column;
+.business-info h1 {
+  font-size: 28px;
+  color: #333;
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+.business-profile-image {
+  width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #8A2BE2; 
 }
 
-.review-card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.business-info p {
+  font-size: 16px;
+  margin: 10px 0;
 }
 
-.review-header {
+.business-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.category {
+  font-weight: bold;
+  color: #666;
+}
+
+.rating-breakdown {
+  margin-top: 20px;
+}
+
+.rating-row {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.profile-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.rating-row span {
+  width: 30px;
+  text-align: right;
   margin-right: 10px;
-  border: 2px solid #ccc;
 }
 
-.section {
-  margin-bottom: 40px;
+.rating-bar-container {
+  flex: 1;
+  background-color: #e4e5e9;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin-right: 10px;
 }
 
-.section h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.rating-bar {
+  height: 100%;
+  background-color: #ffd700;
 }
 
-.card-container {
-  display: flex;
-  gap: 20px;
+.rating-count {
+  font-size: 14px;
 }
 
-.column-card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  padding: 20px;
-  width: 48%;
-  text-align: left;
-}
-
-.business-image img {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.business-details h1 {
-  font-size: 24px;
+.review-form {
   margin-top: 20px;
 }
 
-.business-details p {
+.review-form label {
+  display: block;
   font-size: 16px;
-  color: #555;
-  margin: 5px 0;
+  margin-bottom: 5px;
 }
 
 .review-form textarea {
   width: 100%;
+  height: 100px;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .review-form button {
-  background-color: #007bff;
-  color: white;
+  display: inline-block;
   padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .review-form button:hover {
-  background-color: #0056b3;
+  background-color: #218838;
 }
 
-.rating-select {
+.review-stars {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.rating-select label {
-  font-size: 18px;
 }
 
 .review-stars span {
   font-size: 24px;
   margin-right: 5px;
-  cursor: pointer;
 }
 
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  margin-top: 20px;
 }
 
 .review-card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  background-color: #fff;
   padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.review-card .review-stars span {
-  font-size: 18px;
-  color: #ffd700;
+.review-header {
+  margin-bottom: 10px;
 }
 
 .review-comment {
   margin-top: 10px;
+  font-size: 14px;
+  color: #555;
 }
 
-.review-card p {
-  margin: 0;
-}
 
-h2 {
-  text-align: center;
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+  }
+
+  .column-card {
+    margin-bottom: 20px;
+  }
 }

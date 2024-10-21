@@ -78,6 +78,27 @@ const BusinessDetails = () => {
     );
   };
 
+  // Function to calculate average rating
+  const calculateAverageRating = () => {
+    if (reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return (totalRating / reviews.length).toFixed(1);
+  };
+
+  const calculateRatingCounts = () => {
+    const counts = Array(5).fill(0);
+    reviews.forEach((review) => {
+      if (review.rating >= 1 && review.rating <= 5) {
+        counts[review.rating - 1] += 1;
+      }
+    });
+    return counts;
+  };
+
+  const averageRating = calculateAverageRating();
+  const ratingCounts = calculateRatingCounts();
+  const totalReviews = reviews.length || 1; // Avoid division by zero
+
   if (!business) {
     return <div>Loading...</div>;
   }
@@ -89,7 +110,7 @@ const BusinessDetails = () => {
         <div className="card-container">
           {/* Business Info Column */}
           <div className="column-card business-info">
-          <h1>{business.businessName}</h1>
+            <h1>{business.businessName}</h1>
             <img
               className="business-profile-image"
               src={`http://localhost:5000${business.imageUrl}`} 
@@ -104,21 +125,40 @@ const BusinessDetails = () => {
             <p className="category">{business.category}</p>
           </div>
 
-          {/* Add Comment/Rating Form Column */}
+          {/* Average Rating Column */}
           <div className="column-card">
-            <h2>Submit a Review</h2>
-            <form onSubmit={handleSubmit} className="review-form">
-              <div className="rating-select">
-                <label>Rating:</label>
-                {renderStars(rating)}
-              </div>
-              <div>
-                <label>Comment:</label>
-                <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-              </div>
-              <button type="submit">Submit</button>
-            </form>
+            <h2>{averageRating}☆</h2>
+            <div className="rating-breakdown">
+              {ratingCounts.slice().reverse().map((count, index) => (
+                <div key={index} className="rating-row">
+                  <span>{5 - index}☆</span>
+                  <div className="rating-bar-container">
+                    <div
+                      className="rating-bar"
+                      style={{ width: `${(count / totalReviews) * 100}%` }}
+                    ></div>
+                  </div>
+                  <span className="rating-count">({count})</span>
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
+
+        {/* Add Comment/Rating Form Column */}
+        <div className="column-card">
+          <h2>Submit a Review</h2>
+          <form onSubmit={handleSubmit} className="review-form">
+            <div className="rating-select">
+              <label>Rating:</label>
+              {renderStars(rating)}
+            </div>
+            <div>
+              <label>Comment:</label>
+              <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
 
         {/* Reviews in Grid Layout */}
