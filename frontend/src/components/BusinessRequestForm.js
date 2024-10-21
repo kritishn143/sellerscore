@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const BusinessRequestForm = () => {
   const navigate = useNavigate();
+  const [currentYear] = useState(new Date().getFullYear());
   const [formData, setFormData] = useState({
     businessName: '',
     address: '',
@@ -126,6 +127,10 @@ const BusinessRequestForm = () => {
         )}
         <button type="submit">Submit</button>
       </form>
+      <footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

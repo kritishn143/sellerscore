@@ -11,6 +11,7 @@ const AdminDashboard = () => {
   const [feedback, setFeedback] = useState('');
   const [declineRequestId, setDeclineRequestId] = useState(null);
   const [selectedRequests, setSelectedRequests] = useState([]);
+  const [currentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -168,6 +169,10 @@ const AdminDashboard = () => {
           ))}
         </tbody>
       </table>
+      <footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

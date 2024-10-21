@@ -9,6 +9,7 @@ const UserProfile = () => {
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [currentYear] = useState(new Date().getFullYear());
   const [currentRequest, setCurrentRequest] = useState({
     id: null,
     name: "",
@@ -183,150 +184,153 @@ const UserProfile = () => {
   };
 
   return (
-    <><NavBar /><div className="container">
-          {loading ? (
-              <p>Loading...</p>
-          ) : error ? (
-              <p style={{ color: "red" }}>{error}</p>
-          ) : (
-              <div>
-                  <div className="profile-box">
-                      <h2>User Profile</h2>
-                      <form onSubmit={handleUpdateProfile} className="form-grid">
-                          <div className="form-row-group">
-                              <div className="form-row">
-                                  <label>Username:</label>
-                                  <input
-                                      type="text"
-                                      value={username}
-                                      onChange={(e) => setUsername(e.target.value)}
-                                      disabled={!editMode}
-                                      required />
-                              </div>
-                              <div className="form-row">
-                                  <label>Email:</label>
-                                  <input
-                                      type="email"
-                                      value={email}
-                                      onChange={(e) => setEmail(e.target.value)}
-                                      disabled={!editMode}
-                                      required />
-                              </div>
-                          </div>
-                          <div className="button-group">
-                              <button type="button" onClick={() => setEditMode(!editMode)}>
-                                  {editMode ? "Cancel" : "Edit Profile"}
-                              </button>
-                              {editMode && <button type="submit">Save Changes</button>}
-                          </div>
-                      </form>
-                  </div>
-
-                  <div className="business-requests-box">
-                      <h3>Your Business Requests</h3>
-                      {businessRequests.length > 0 ? (
-                          <table className="request-table">
-                              <thead>
-                                  <tr>
-                                      <th>Business Name</th>
-                                      <th>Status</th>
-                                      <th>Actions</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  {businessRequests.map((request) => (
-                                      <tr key={request._id}>
-                                          <td>{request.businessName}</td>
-                                          <td>{request.status}</td>
-                                          <td className="request-buttons">
-                                              <button onClick={() => handleEditRequest(request)}>
-                                                  Edit
-                                              </button>
-                                              <button
-                                                  onClick={() => handleDeleteRequest(request._id)}
-                                              >
-                                                  Delete
-                                              </button>
-                                          </td>
-                                      </tr>
-                                  ))}
-                              </tbody>
-                          </table>
-                      ) : (
-                          <p>No business requests found.</p>
-                      )}
-
-                      {currentRequest.id && (
-                          <form onSubmit={handleUpdateRequest} className="form-grid">
-                              <h4>Edit Business Request</h4>
-                              <div className="form-row">
-                                  <label>Business Name:</label>
-                                  <input
-                                      type="text"
-                                      value={currentRequest.name}
-                                      onChange={(e) => setCurrentRequest({
-                                          ...currentRequest,
-                                          name: e.target.value,
-                                      })}
-                                      required />
-                              </div>
-                              <div className="form-row">
-                                  <label>Category:</label>
-                                  <select
-                                      value={currentRequest.category}
-                                      onChange={(e) => setCurrentRequest({
-                                          ...currentRequest,
-                                          category: e.target.value,
-                                      })}
-                                      required
-                                  >
-                                      <option value="">Select a category</option>
-                                      {categories.map((category) => (
-                                          <option key={category} value={category}>
-                                              {category}
-                                          </option>
-                                      ))}
-                                  </select>
-                              </div>
-                              <div className="form-row">
-                                  <label>Address:</label>
-                                  <input
-                                      type="text"
-                                      value={currentRequest.address}
-                                      onChange={(e) => setCurrentRequest({
-                                          ...currentRequest,
-                                          address: e.target.value,
-                                      })}
-                                      required />
-                              </div>
-                              <div className="form-row">
-                                  <label>Website:</label>
-                                  <input
-                                      type="url"
-                                      value={currentRequest.website}
-                                      onChange={(e) => setCurrentRequest({
-                                          ...currentRequest,
-                                          website: e.target.value,
-                                      })} />
-                              </div>
-                              <div className="form-row">
-                                  <label>
-                                      Upload New Image:
-                                      <input
-                                          type="file"
-                                          accept="image/*"
-                                          onChange={(e) => setImageFile(e.target.files[0])} />
-                                  </label>
-                              </div>
-                              <div className="button-group">
-                                  <button type="submit">Save Changes</button>
-                              </div>
-                          </form>
-                      )}
-                  </div>
+    <><><NavBar /><div className="container">
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p style={{ color: "red" }}>{error}</p>
+      ) : (
+        <div>
+          <div className="profile-box">
+            <h2>User Profile</h2>
+            <form onSubmit={handleUpdateProfile} className="form-grid">
+              <div className="form-row-group">
+                <div className="form-row">
+                  <label>Username:</label>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    disabled={!editMode}
+                    required />
+                </div>
+                <div className="form-row">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={!editMode}
+                    required />
+                </div>
               </div>
-          )}
-      </div></>
+              <div className="button-group">
+                <button type="button" onClick={() => setEditMode(!editMode)}>
+                  {editMode ? "Cancel" : "Edit Profile"}
+                </button>
+                {editMode && <button type="submit">Save Changes</button>}
+              </div>
+            </form>
+          </div>
+
+          <div className="business-requests-box">
+            <h3>Your Business Requests</h3>
+            {businessRequests.length > 0 ? (
+              <table className="request-table">
+                <thead>
+                  <tr>
+                    <th>Business Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {businessRequests.map((request) => (
+                    <tr key={request._id}>
+                      <td>{request.businessName}</td>
+                      <td>{request.status}</td>
+                      <td className="request-buttons">
+                        <button onClick={() => handleEditRequest(request)}>
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteRequest(request._id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No business requests found.</p>
+            )}
+
+            {currentRequest.id && (
+              <form onSubmit={handleUpdateRequest} className="form-grid">
+                <h4>Edit Business Request</h4>
+                <div className="form-row">
+                  <label>Business Name:</label>
+                  <input
+                    type="text"
+                    value={currentRequest.name}
+                    onChange={(e) => setCurrentRequest({
+                      ...currentRequest,
+                      name: e.target.value,
+                    })}
+                    required />
+                </div>
+                <div className="form-row">
+                  <label>Category:</label>
+                  <select
+                    value={currentRequest.category}
+                    onChange={(e) => setCurrentRequest({
+                      ...currentRequest,
+                      category: e.target.value,
+                    })}
+                    required
+                  >
+                    <option value="">Select a category</option>
+                    {categories.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-row">
+                  <label>Address:</label>
+                  <input
+                    type="text"
+                    value={currentRequest.address}
+                    onChange={(e) => setCurrentRequest({
+                      ...currentRequest,
+                      address: e.target.value,
+                    })}
+                    required />
+                </div>
+                <div className="form-row">
+                  <label>Website:</label>
+                  <input
+                    type="url"
+                    value={currentRequest.website}
+                    onChange={(e) => setCurrentRequest({
+                      ...currentRequest,
+                      website: e.target.value,
+                    })} />
+                </div>
+                <div className="form-row">
+                  <label>
+                    Upload New Image:
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setImageFile(e.target.files[0])} />
+                  </label>
+                </div>
+                <div className="button-group">
+                  <button type="submit">Save Changes</button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </div></><footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      </footer></>
   );
 };
 

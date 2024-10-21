@@ -31,18 +31,34 @@
 }
 
 .category-page-business-image-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px; /* space between the image and rating */
 }
 
 .category-page-business-image {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  width: 100px; /* Set the width for the image */
+  height: 100px; /* Set the height for the image to be the same as the width */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  border: 2px solid #0066c5; /* Optional: adds a border around the image */
 }
+
+.category-page-business-rating {
+  margin-top: 10px; /* Add space between image and ratings */
+  font-size: 16px; /* Adjust the font size for the rating */
+}
+
+.rating-display {
+  color: #000000; 
+  font-weight: bold;
+}
+
+.review-count {
+  color: #666; /* Grey color for the review count */
+  margin-left: 5px;
+}
+
 
 .category-page-business-info {
   flex: 2;

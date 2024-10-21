@@ -11,6 +11,7 @@ const BusinessDetails = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
+  const [currentYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
 
   const fetchBusiness = useCallback(async () => {
@@ -88,12 +89,12 @@ const BusinessDetails = () => {
         <div className="card-container">
           {/* Business Info Column */}
           <div className="column-card business-info">
+          <h1>{business.businessName}</h1>
             <img
               className="business-profile-image"
               src={`http://localhost:5000${business.imageUrl}`} 
               alt={business.businessName}
             />
-            <h1>{business.businessName}</h1>
             <p>{business.address}</p>
             <p>
               <a href={business.website} target="_blank" rel="noopener noreferrer">
@@ -138,6 +139,10 @@ const BusinessDetails = () => {
           </div>
         </div>
       </div>
+      <footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

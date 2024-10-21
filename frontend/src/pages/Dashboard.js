@@ -7,6 +7,7 @@ import './Dashboard.css'; // Import the CSS file
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
+  const [currentYear] = useState(new Date().getFullYear());
   const role = localStorage.getItem('role');
 
   useEffect(() => {
@@ -98,6 +99,10 @@ const Dashboard = () => {
           ))}
         </tbody>
       </table>
+      <footer className="footer">
+        <img src="/score.gif" alt="score logo" className="footer-logo" />
+        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

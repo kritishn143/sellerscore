@@ -45,9 +45,11 @@
 }
 
 .business-logo {
-  width: 80px; /* Fixed width for logo */
-  height: 80px; /* Fixed height for logo */
-  border-radius: 5px; /* Rounded corners for logo */
+  width: 100px; /* Set the width for the image */
+  height: 100px; /* Set the height for the image to be the same as the width */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  border: 2px solid #0066c5; /* Optional: adds a border around the image */
 }
 
 .business-name {
