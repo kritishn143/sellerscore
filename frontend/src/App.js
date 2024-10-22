@@ -2,7 +2,9 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
+import NavBar from './components/NavBar'; // Import your Navbar component
 import './App.css';
+import './components/NavBar.css'; // Correct path for Navbar.css
 
 const Home = React.lazy(() => import('./pages/Home'));
 const SignupPage = React.lazy(() => import('./pages/SignupPage'));
@@ -18,6 +20,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
+        
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />

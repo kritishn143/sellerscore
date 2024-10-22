@@ -1,10 +1,7 @@
-/* Navbar.css */
-
-/* Define color variables for consistency and easy maintenance */
 :root {
     --navbar-bg: #0066c5; /* Slate Blue */
     --button-bg: #0066c5;  /* White */
-    --button-text: #ffffff; /* Slate Blue */
+    --button-text: #ffffff; /* White */
     --button-hover-bg: #294697; /* Dark Slate Blue */
     --button-hover-text: #ffffff; /* White */
     --shadow-color: rgba(0, 0, 0, 0.2); /* Shadow color */
@@ -12,58 +9,51 @@
 
 .navbar {
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
-    background-color: var(--navbar-bg); /* Navbar background color */
-    padding: 10px 20px; /* Vertical and horizontal padding */
-    box-shadow: 0 4px 10px var(--shadow-color); /* Shadow for depth */
-    position: relative; /* Set relative positioning for absolute children */
+    align-items: center;
+    box-shadow: 0 4px 10px var(--shadow-color); 
+    padding: 10px;
+    background-color: var(--navbar-bg); /* Apply background color */
 }
 
 .logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    height: 40px;
-    width: 100px;
-    object-fit: cover; 
-    object-position: center; /* Center logo image */
+    height: 40px; /* Adjust as per your logo size */
 }
 
 .navbar-button {
-    background-color: var(--button-bg); /* Button background color */
-    color: var(--button-text); /* Button text color */
+    margin-left: auto; /* Pushes the button to the right */
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px; /* Padding for buttons */
-    margin-left: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transition effects */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Make text bold */
+    font-size: 16px; 
+    font-weight: bold; 
 }
 
 .navbar-button:hover {
-    background-color: var(--button-hover-bg); /* Background color on hover */
-    color: var(--button-hover-text); /* Text color on hover */
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
 .footer {
-    background-color: #0066c5; 
+    background-color: var(--navbar-bg); 
     color: #ffffff; 
     text-align: center; 
     padding: 20px 0; 
     width: 100%; 
     position: relative; 
-    bottom: 0; 
+    bottom: 0;
 }
 
 .footer-logo {
     position: absolute;
     top: 10px;
     left: 100px;
-    height: 80px; 
-    width: 80px; 
+    height: 80px;
+    width: 80px;
     object-fit: cover;
     object-position: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
