@@ -1,18 +1,21 @@
 /* BusinessDetails.css */
 
+/* General page styles */
 .page-card {
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: #f4f4f4; /* Light background for contrast */
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Card container styles */
 .card-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
 }
 
+/* Column card styles */
 .column-card {
   flex: 1;
   margin: 0 20px;
@@ -20,19 +23,25 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  transition: transform 0.2s; /* Smooth hover effect */
 }
 
+.column-card:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Business info styles */
 .business-info h1 {
   font-size: 28px;
   color: #333;
 }
 
 .business-profile-image {
-  width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid #8A2BE2; 
+  width: 100px; /* Adjusted for better visibility */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #8A2BE2; /* Adjust border color */
 }
 
 .business-info p {
@@ -50,6 +59,7 @@
   color: #666;
 }
 
+/* Rating breakdown styles */
 .rating-breakdown {
   margin-top: 20px;
 }
@@ -77,13 +87,15 @@
 
 .rating-bar {
   height: 100%;
-  background-color: #ffd700;
+  background-color: #ffd700; /* Star color */
 }
 
+/* Rating count styles */
 .rating-count {
   font-size: 14px;
 }
 
+/* Review form styles */
 .review-form {
   margin-top: 20px;
 }
@@ -101,45 +113,56 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
+  resize: none; /* Disable resizing */
 }
 
 .review-form button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: #28a745; /* Success color */
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s; /* Smooth transition */
 }
 
 .review-form button:hover {
-  background-color: #218838;
+  background-color: #218838; /* Darker green on hover */
 }
 
+/* Star rating styles */
 .review-stars {
   display: flex;
 }
 
 .review-stars span {
-  font-size: 24px;
+  font-size: 24px; /* Size of stars */
   margin-right: 5px;
 }
 
+/* Reviews grid styles */
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* Review card styles */
 .review-card {
   background-color: #fff;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s; /* Smooth shadow transition */
 }
 
+.review-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Review header and comment styles */
 .review-header {
   margin-bottom: 10px;
 }
@@ -149,14 +172,56 @@
   font-size: 14px;
   color: #555;
 }
+.review-actions {
+  display: flex;
+  justify-content: space-between; /* Space buttons apart */
+  margin-top: 10px; /* Space above the buttons */
+}
 
+.review-actions button {
+  padding: 8px 15px; /* Add some padding for better touch targets */
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s; /* Smooth transition */
+}
 
+.review-actions button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-1px); /* Slight lift effect on hover */
+}
+
+.review-actions button:active {
+  transform: translateY(0); /* Reset lift on active */
+}
+
+.review-actions button:last-child {
+  background-color: #dc3545; /* Danger color for delete */
+}
+
+.review-actions button:last-child:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .card-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack columns on small screens */
   }
 
   .column-card {
     margin-bottom: 20px;
+  }
+
+  .business-profile-image {
+    width: 80px; /* Adjust image size for smaller screens */
+    height: 80px;
+  }
+
+  .review-form textarea {
+    height: 80px; /* Adjust height for smaller screens */
   }
 }

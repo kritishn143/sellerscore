@@ -15,9 +15,9 @@ const SignupForm = () => {
     if (!username || !email || !password) {
       return 'All fields are required';
     }
-    const usernameRegex = /^[a-zA-Z0-9]{1,7}$/;
+    const usernameRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,7}$/;
     if (!usernameRegex.test(username)) {
-      return 'Username must be only letters and numbers and less than 8 characters';
+      return 'Username must be 5-7 characters long, and include both letters and numbers';
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -25,13 +25,14 @@ const SignupForm = () => {
     }
     const passwordRegex = /^(?=.*[!@#$%^&*()]).{8,}$/;
     if (!passwordRegex.test(password)) {
-      return 'Password must be at least 8 characters long and include special character ';
+      return 'Password must be at least 8 characters long and include a special character';
     }
     if (/^(.)\1*$/.test(password)) {
-      return 'Password cannot be repeated numbers';
+      return 'Password cannot be repeated characters';
     }
     return '';
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

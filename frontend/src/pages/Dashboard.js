@@ -55,9 +55,9 @@ const Dashboard = () => {
         </Link>
         {isLoggedIn() && (
           <>
-            <button className="navbar-button" onClick={handleLogout}>Logout</button>
             <button className="navbar-button" onClick={handleBusinessRequest}>Business Request</button>
             <button className="navbar-button" onClick={handleUserProfile}>Profile</button> {/* User Profile link */}
+            <button className="navbar-button" onClick={handleLogout}>Logout</button>
             {role === 'admin' && (
               <button className="navbar-button" onClick={handleAdminDashboard}>Admin Dashboard</button>
             )}

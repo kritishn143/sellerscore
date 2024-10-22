@@ -18,6 +18,8 @@ const {
   deleteBusinessRequests,
   submitReview,
   getReviews,
+  updateReview,
+  deleteReview,
 } = require('../controllers/businessRequestController');
 const adminOnly = require('../middleware/role');
 const auth = require('../middleware/auth');
@@ -38,6 +40,10 @@ router.put('/updateuserprofile', auth, updateUserProfile);
 router.get('/mybusiness', auth, getBusinessRequests);
 router.put('/business-request/:id/edit', auth, updateBusinessRequest); // Edit business request
 router.delete('/business-request/:id', auth, deleteBusinessRequest); // Delete business request
+
+// New routes for review editing and deletion
+router.put('/review/:id', auth, updateReview); // Edit review
+router.delete('/review/:id', auth, deleteReview); // Delete review
 
 // Admin route to get all business requests
 router.get('/api/admin/business-requests', auth, adminOnly, async (req, res) => {
