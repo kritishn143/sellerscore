@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BusinessList from '../components/BusinessList';
-import './Home.css'; // Import CSS file
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -29,7 +28,7 @@ const Home = () => {
         setBusinesses(response.data);
         await fetchRatingsAndReviews(response.data);
       } catch (error) {
-        console.error('Error fetching approved businesses:', error);
+        console.error('Error fetching businesses:', error);
       }
     };
 
@@ -37,9 +36,7 @@ const Home = () => {
     fetchBusinesses();
 
     const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    if (token) setIsLoggedIn(true);
   }, []);
 
   const fetchRatingsAndReviews = async (businesses) => {
@@ -64,19 +61,18 @@ const Home = () => {
   const calculateAverageRating = (reviews) => {
     if (reviews.length === 0) return 0;
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
-    const average = (totalRating / reviews.length).toFixed(1);
-    return parseFloat(average);
+    return (totalRating / reviews.length).toFixed(1);
   };
 
   const getRecommendations = () => {
     const recommendations = {};
-    businesses.forEach(business => {
+    businesses.forEach((business) => {
       const category = business.category;
       const averageRating = averageRatings[business._id] || 0;
 
       if (!recommendations[category] || averageRating > recommendations[category].average) {
         recommendations[category] = {
-          business: business,
+          business,
           average: averageRating,
           reviewCount: reviewCounts[business._id] || 0,
         };
@@ -88,64 +84,78 @@ const Home = () => {
   const recommendations = getRecommendations();
 
   return (
-    <div>
-      <nav className="navbar">
-        <Link to="/">
-          <img src="/seller.gif" alt="score logo" className="logo" />
+    <div className="min-h-screen flex flex-col">
+      {/* Navbar */}
+      <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-lg">
+        <Link to="/" className="flex items-center space-x-2">
+          <img src="/seller.gif" alt="Score Logo" className="h-10" />
         </Link>
         {isLoggedIn ? (
-          <button className="navbar-button" onClick={() => navigate('/dashboard')}>Dashboard</button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            onClick={() => navigate('/dashboard')}
+          >
+            Dashboard
+          </button>
         ) : (
-          <button className="navbar-button" onClick={() => navigate('/login')}>Login</button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+            onClick={() => navigate('/login')}
+          >
+            Login
+          </button>
         )}
       </nav>
-      <h1>Top categories</h1>
 
-      <ul>
-        {categories.map(category => (
-          <li key={category}>
-            <Link to={`/category/${category}`}>{category}</Link>
-          </li>
-        ))}
-      </ul>
-      
-      <BusinessList />
-      
-      <h2>Recommended Businesses by Category</h2>
-<div className="recommendations">
-  {Object.keys(recommendations)
-    .sort((a, b) => {
-      // Sort by average rating (high to low)
-      if (recommendations[b].average !== recommendations[a].average) {
-        return recommendations[b].average - recommendations[a].average;
-      }
-      // If ratings are equal, sort by review count (high to low)
-      return recommendations[b].reviewCount - recommendations[a].reviewCount;
-    })
-    .map(category => (
-      <div key={category} className="recommendation-item">
-        <h3>{category}</h3>
-        <div className="recommended-business">
-          <h2 className="business-name">
-            <Link to={`/business/${recommendations[category].business.businessName}`}>
-              {recommendations[category].business.businessName}
-            </Link>
-          </h2>
-          <span className="rating-display">
-            {recommendations[category].average}★ {/* Display average rating followed by a star */}
-          </span>
-          <span className="review-count">
-            ({recommendations[category].reviewCount} reviews)
-          </span>
+      {/* Main Content */}
+      <main className="flex-grow p-6">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Top Categories</h1>
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+          {categories.map((category) => (
+            <li key={category} className="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-blue-50">
+              <Link to={`/category/${category}`} className="text-blue-600 font-semibold">
+                {category}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <BusinessList />
+
+        <h2 className="text-2xl font-semibold text-gray-800 mt-10 mb-4">Recommended Businesses by Category</h2>
+        <div className="space-y-6">
+          {Object.keys(recommendations)
+            .sort((a, b) => {
+              if (recommendations[b].average !== recommendations[a].average) {
+                return recommendations[b].average - recommendations[a].average;
+              }
+              return recommendations[b].reviewCount - recommendations[a].reviewCount;
+            })
+            .map((category) => (
+              <div key={category} className="bg-white p-4 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-gray-800">{category}</h3>
+                <div className="mt-2">
+                  <h4 className="text-lg font-semibold text-blue-600">
+                    <Link to={`/business/${recommendations[category].business.businessName}`}>
+                      {recommendations[category].business.businessName}
+                    </Link>
+                  </h4>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <span className="text-yellow-500">{recommendations[category].average}★</span>
+                    <span className="text-gray-500">({recommendations[category].reviewCount} reviews)</span>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
-      </div>
-    ))}
-</div>
+      </main>
 
-
-      <footer className="footer">
-        <img src="/score.gif" alt="score logo" className="footer-logo" />
-        <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+      {/* Footer */}
+      <footer className="bg-blue-600 text-white py-4">
+        <div className="flex items-center justify-center space-x-2">
+          <img src="/score.gif" alt="Score Logo" className="h-8" />
+          <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
