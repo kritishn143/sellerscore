@@ -100,7 +100,8 @@ const Dashboard = () => {
         </tbody>
       </table>
       <footer className="footer">
-        <img src="/score.gif" alt="score logo" className="footer-logo" />
+             <img src="/score.gif" alt="score logo" className="footer-logo" style={{ width: "50px", height: "50px" }} />
+
         <p>&copy; {currentYear} Sellerscore. All rights reserved.</p>
       </footer>
     </div>
