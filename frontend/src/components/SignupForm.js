@@ -15,7 +15,7 @@ const SignupForm = () => {
     if (!username || !email || !password) {
       return 'All fields are required';
     }
-    const usernameRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,7}$/;
+    const usernameRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{4,11}$/;
     if (!usernameRegex.test(username)) {
       return 'Username must be 5-7 characters long, and include both letters and numbers';
     }

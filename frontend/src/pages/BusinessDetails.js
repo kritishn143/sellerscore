@@ -157,9 +157,18 @@ const BusinessDetails = () => {
             />
             <p>{business.address}</p>
             <p>
-              <a href={business.website} target="_blank" rel="noopener noreferrer">
-                {business.website}
-              </a>
+            <a
+  href={
+    business.website.startsWith("http") 
+      ? business.website 
+      : `https://${business.website}`
+  }
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  {new URL(business.website.startsWith("http") ? business.website : `https://${business.website}`).hostname}
+</a>
+
             </p>
             <p className="category">{business.category}</p>
             
