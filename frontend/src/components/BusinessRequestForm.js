@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './NavBar'; // Import the CSS file
 import './BusinessRequestForm.css'; // Import the CSS file
 import { Link } from 'react-router-dom';
-const apiUrl = process.env.REACT_APP_API_URL;
 
 const BusinessRequestForm = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const BusinessRequestForm = () => {
     const fetchBusinessRequest = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFormData(response.data);
@@ -60,7 +59,7 @@ const BusinessRequestForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/business-request`, formDataToSend, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/business-request`, formDataToSend, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -69,11 +68,17 @@ const BusinessRequestForm = () => {
       setFormData(response.data); // Update form data with the response data
       alert('Business request submitted successfully!');
     } catch (error) {
-      console.error('There was an error submitting the business request!', error);
-      if (error.response && error.response.data.message) {
-        alert(`Failed to submit business request: ${error.response.data.message}`);
+      console.error('Submission error details:', error);
+      if (error.response) {
+        console.error('Response data:', error.response.data);
+        console.error('Response status:', error.response.status);
+        alert(`Error (${error.response.status}): ${error.response.data.message || 'Unknown error'}`);
+      } else if (error.request) {
+        console.error('Request was made but no response received');
+        alert('No response from server. Please try again later.');
       } else {
-        alert('Failed to submit business request.');
+        console.error('Error message:', error.message);
+        alert(`Error: ${error.message}`);
       }
     }
   };

@@ -15,7 +15,7 @@ const Dashboard = () => {
     const fetchRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRequests(response.data);

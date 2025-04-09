@@ -14,7 +14,7 @@ const BusinessList = () => {
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
-        const response = await axios.get(`${REACT_APP_API_URL}/users/approved-businesses`);
+        const response = await axios.get(`${REACT_APP_API_URL}/api/users/approved-businesses`);
         setBusinesses(response.data);
         await fetchRatingsAndReviews(response.data);
       } catch (error) {
@@ -30,7 +30,7 @@ const BusinessList = () => {
     const counts = {};
     for (const business of businesses) {
       try {
-        const response = await axios.get(`${REACT_APP_API_URL}/users/reviews`, {
+        const response = await axios.get(`${REACT_APP_API_URL}/api/users/reviews`, {
           params: { businessId: business._id }
         });
         const reviews = response.data;

@@ -18,7 +18,7 @@ const BusinessDetails = () => {
 
   const fetchBusiness = useCallback(async () => {
     try {
-      const response = await axios.get(`${REACT_APP_API_URL}/users/business/name/${name}`);
+      const response = await axios.get(`${REACT_APP_API_URL}/api/users/business/name/${name}`);
       setBusiness(response.data);
     } catch (error) {
       console.error('Error fetching business details:', error);
@@ -28,7 +28,7 @@ const BusinessDetails = () => {
   const fetchReviews = useCallback(async () => {
     if (!business) return;
     try {
-      const response = await axios.get(`${REACT_APP_API_URL}/users/reviews?businessId=${business._id}`);
+      const response = await axios.get(`${REACT_APP_API_URL}/api/users/reviews?businessId=${business._id}`);
       setReviews(response.data);
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -39,7 +39,7 @@ const BusinessDetails = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/myprofile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
@@ -63,7 +63,7 @@ const BusinessDetails = () => {
     const token = localStorage.getItem('token');
     try {
       if (editingReview) {
-        await axios.put(`${REACT_APP_API_URL}/users/review/${editingReview._id}`, {
+        await axios.put(`${REACT_APP_API_URL}/api/users/review/${editingReview._id}`, {
           rating,
           comment,
         }, {
@@ -71,7 +71,7 @@ const BusinessDetails = () => {
         });
         setEditingReview(null);
       } else {
-        await axios.post(`${process.env.REACT_APP_API_URL}/users/review`, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users/review`, {
           businessId: business._id,
           rating,
           comment,
@@ -97,7 +97,7 @@ const BusinessDetails = () => {
   const handleDelete = async (reviewId) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`${REACT_APP_API_URL}/users/review/${reviewId}`, {
+      await axios.delete(`${REACT_APP_API_URL}/api/users/review/${reviewId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchReviews();

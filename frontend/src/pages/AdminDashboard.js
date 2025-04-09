@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     const fetchRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${REACT_APP_API_URL}/users/api/admin/business-requests`, {
+        const response = await axios.get(`${REACT_APP_API_URL}/api/users/api/admin/business-requests`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -44,7 +44,7 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${REACT_APP_API_URL}/users/business-request/${requestId}/${action}`, { feedback }, {
+      await axios.put(`${REACT_APP_API_URL}/api/users/business-request/${requestId}/${action}`, { feedback }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
     if (confirmDelete) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { ids: selectedRequests },
         });

@@ -58,7 +58,7 @@ const UserProfile = () => {
       const token = localStorage.getItem("token");
       try {
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/users/mybusiness`,
+            `${process.env.REACT_APP_API_URL}/api/users/mybusiness`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -82,7 +82,7 @@ const UserProfile = () => {
 
     try {
       const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/users/updateuserprofile`,
+          `${process.env.REACT_APP_API_URL}/api/users/updateuserprofile`,
         {
           method: "PUT",
           headers: {
@@ -129,7 +129,7 @@ const UserProfile = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/business-request/${currentRequest.id}/edit`,
+        `${process.env.REACT_APP_API_URL}/api/users/business-request/${currentRequest.id}/edit`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` }, // Don't set Content-Type for FormData
@@ -168,7 +168,7 @@ const UserProfile = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/business-request/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/users/business-request/${id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

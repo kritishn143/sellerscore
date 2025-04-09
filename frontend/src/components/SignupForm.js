@@ -43,7 +43,7 @@ const SignupForm = () => {
       return;
     }
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, { username, email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, { username, email, password });
       alert(response.data.message);
       setError('');
       navigate('/login'); // Redirect to login after successful signup
