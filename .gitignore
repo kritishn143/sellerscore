@@ -1,1 +1,15 @@
 node_modules
+dist
+coverage
+.vscode
+.idea
+.DS_Store
+*.log
+*.env
+*.local
+
+
+
+# Environment variables
+.env
+backend/uploads/logos/1744191920777-ChatGPT Image Apr 5, 2025, 10_06_28 AM.png

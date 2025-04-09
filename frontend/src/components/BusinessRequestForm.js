@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './NavBar'; // Import the CSS file
 import './BusinessRequestForm.css'; // Import the CSS file
 import { Link } from 'react-router-dom';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const BusinessRequestForm = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const BusinessRequestForm = () => {
     const fetchBusinessRequest = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/users/business-requests', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFormData(response.data);
@@ -59,7 +60,7 @@ const BusinessRequestForm = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5000/api/users/business-request', formDataToSend, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/business-request`, formDataToSend, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

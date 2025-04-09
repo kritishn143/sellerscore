@@ -4,6 +4,7 @@ import axios from 'axios';
 import NavBar from '../components/NavBar';
 import './BusinessDetails.css';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 const BusinessDetails = () => {
   const { name } = useParams();
   const [business, setBusiness] = useState(null);
@@ -17,7 +18,7 @@ const BusinessDetails = () => {
 
   const fetchBusiness = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/business/name/${name}`);
+      const response = await axios.get(`${REACT_APP_API_URL}/users/business/name/${name}`);
       setBusiness(response.data);
     } catch (error) {
       console.error('Error fetching business details:', error);
@@ -27,7 +28,7 @@ const BusinessDetails = () => {
   const fetchReviews = useCallback(async () => {
     if (!business) return;
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/reviews?businessId=${business._id}`);
+      const response = await axios.get(`${REACT_APP_API_URL}/users/reviews?businessId=${business._id}`);
       setReviews(response.data);
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -38,7 +39,7 @@ const BusinessDetails = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.get('http://localhost:5000/api/users/myprofile', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
@@ -62,7 +63,7 @@ const BusinessDetails = () => {
     const token = localStorage.getItem('token');
     try {
       if (editingReview) {
-        await axios.put(`http://localhost:5000/api/users/review/${editingReview._id}`, {
+        await axios.put(`${REACT_APP_API_URL}/users/review/${editingReview._id}`, {
           rating,
           comment,
         }, {
@@ -70,7 +71,7 @@ const BusinessDetails = () => {
         });
         setEditingReview(null);
       } else {
-        await axios.post('http://localhost:5000/api/users/review', {
+        await axios.post(`${process.env.REACT_APP_API_URL}/users/review`, {
           businessId: business._id,
           rating,
           comment,
@@ -96,7 +97,7 @@ const BusinessDetails = () => {
   const handleDelete = async (reviewId) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/api/users/review/${reviewId}`, {
+      await axios.delete(`${REACT_APP_API_URL}/users/review/${reviewId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchReviews();
@@ -152,8 +153,8 @@ const BusinessDetails = () => {
             <h1>{business.businessName}</h1>
             <img
               className="business-profile-image"
-              src={`http://localhost:5000${business.imageUrl}`} 
-              alt={business.businessName}
+              src={`${REACT_APP_API_URL.split('/api')[0]}${business.imageUrl}`}
+                            alt={business.businessName}
             />
             <p>{business.address}</p>
             <p>
@@ -208,7 +209,6 @@ const BusinessDetails = () => {
             </form>
           </div>
         <div className="section reviews">
-            <h2>Reviews</h2>
             <div className="reviews-grid">
               {reviews.map((review) => (
                 <div key={review._id} className="review-card">

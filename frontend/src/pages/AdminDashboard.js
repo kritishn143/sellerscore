@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import './AdminDashboard.css';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 const AdminDashboard = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ const AdminDashboard = () => {
     const fetchRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/users/api/admin/business-requests', {
+        const response = await axios.get(`${REACT_APP_API_URL}/users/api/admin/business-requests`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -42,7 +44,7 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/users/business-request/${requestId}/${action}`, { feedback }, {
+      await axios.put(`${REACT_APP_API_URL}/users/business-request/${requestId}/${action}`, { feedback }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -61,7 +63,7 @@ const AdminDashboard = () => {
     if (confirmDelete) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete('http://localhost:5000/api/users/business-requests', {
+        await axios.delete(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { ids: selectedRequests },
         });
@@ -135,7 +137,7 @@ const AdminDashboard = () => {
           <td>
             {request.imageUrl && (
               <img 
-                src={`http://localhost:5000${request.imageUrl}`} 
+                src={`${process.env.REACT_APP_API_URL.split('/api')[0]}${request.imageUrl}`} 
                 alt={request.businessName} 
                 className="business-image" 
               />

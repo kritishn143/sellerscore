@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import './CategoryPage.css'; // Import the CSS file
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 const CategoryPage = () => {
   const { category } = useParams();
   const [businesses, setBusinesses] = useState([]);
@@ -16,7 +17,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/approved-businesses?category=${category}`);
+        const response = await axios.get(`${REACT_APP_API_URL}/users/approved-businesses?category=${category}`);
         const businessesData = response.data;
         setBusinesses(businessesData);
         await fetchRatingsAndReviews(businessesData);
@@ -33,7 +34,7 @@ const CategoryPage = () => {
     const counts = {};
     for (const business of businesses) {
       try {
-        const response = await axios.get('http://localhost:5000/api/users/reviews', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/reviews`, {
           params: { businessId: business._id },
         });
         const reviews = response.data;
@@ -74,8 +75,8 @@ const CategoryPage = () => {
           {sortedBusinesses.map((business) => (
             <div key={business._id} className="category-page-business-card">
               <div className="category-page-business-image-container">{business.imageUrl && (
-              <img src={`http://localhost:5000${business.imageUrl}`}
-              alt={business.businessName}className="category-page-business-image"/>
+              <img src={`${REACT_APP_API_URL.split('/api')[0]}${business.imageUrl}`}
+                 alt={business.businessName}className="category-page-business-image"/>
               )}
               <div className="category-page-business-rating">
                 <span className="rating-display">

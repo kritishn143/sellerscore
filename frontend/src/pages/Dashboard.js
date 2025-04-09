@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css'; // Import the CSS file
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const Dashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -14,7 +15,7 @@ const Dashboard = () => {
     const fetchRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/users/business-requests', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/business-requests`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRequests(response.data);
@@ -84,7 +85,7 @@ const Dashboard = () => {
               <td>
                 {request.imageUrl && (
                   <img 
-                    src={`http://localhost:5000${request.imageUrl}`} 
+                  src={`${REACT_APP_API_URL.split('/api')[0]}${request.imageUrl}`} 
                     alt={request.businessName} 
                     style={{ width: '100px', height: 'auto' }} 
                   />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 
 const SignupForm = () => {
@@ -42,7 +43,7 @@ const SignupForm = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', { username, email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, { username, email, password });
       alert(response.data.message);
       setError('');
       navigate('/login'); // Redirect to login after successful signup
