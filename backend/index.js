@@ -5,7 +5,6 @@ const cors = require('cors');
 const path = require('path');  // Add this for serving static files
 const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
-const apiUrl = process.env.REACT_APP_API_URL;
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI, {
